@@ -15,6 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
+import { HighlightDirective } from './shared/directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProductComponent } from './product/product.component';
     FooterComponent,
     BannerComponent,
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
