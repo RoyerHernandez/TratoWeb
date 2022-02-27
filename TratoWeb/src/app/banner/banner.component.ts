@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { images } from '../banner/images.model';
 
 @Component({
   selector: 'app-banner',
@@ -7,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  images: string[] = [
-    'assets/images/banner-1.jpg',
-    'assets/images/banner-2.jpg',
-    'assets/images/banner-3.jpg',
+  image: images[] = [
+    {
+      id: 1,
+      title: 'Banner 1',
+      description: 'Trato Principal',
+      image: 'assets/images/banner-1.jpg'
+    },
+    {
+      id: 2,
+      title: 'Banner 2',
+      description: 'Trato Principal',
+      image: 'assets/images/banner-2.jpg'
+    },
+    {
+      id: 3,
+      title: 'Banner 3',
+      description: 'Trato Principal',
+      image: 'assets/images/banner-3.jpg'
+    }
   ];
 
   constructor() { }

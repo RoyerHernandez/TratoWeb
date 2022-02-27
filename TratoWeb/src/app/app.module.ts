@@ -13,6 +13,8 @@ import { AuctionsComponent } from './auctions/auctions.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
+import { ProductsComponent } from './products/products.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { BannerComponent } from './banner/banner.component';
     AuctionsComponent,
     HeaderComponent,
     FooterComponent,
-    BannerComponent
+    BannerComponent,
+    ProductsComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
-  ],
+  ],  
   providers: [],
   bootstrap: [AppComponent]
 })
