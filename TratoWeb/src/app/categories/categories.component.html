@@ -1,4 +1,9 @@
 <app-header></app-header>
-<p>categories works!</p>
-<app-products></app-products>
+<div class="categorie-grid">
+    <app-categorie 
+    *ngFor="let categorie of categories " 
+    [categorie]="categorie">      
+    </app-categorie>    
+  </div>
+
 

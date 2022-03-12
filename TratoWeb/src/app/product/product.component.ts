@@ -5,7 +5,7 @@ import {
   EventEmitter, 
   OnChanges, 
   SimpleChanges, 
-  OnInit } from "@angular/core"; '@angular/core';
+  OnInit } from "@angular/core"; 
 
 import { product } from '../product/product.model'
 

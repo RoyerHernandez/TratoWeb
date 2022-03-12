@@ -16,6 +16,7 @@ import { BannerComponent } from './banner/banner.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
+import { CategorieComponent } from './categorie/categorie.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
     BannerComponent,
     ProductsComponent,
     ProductComponent,
-    HighlightDirective
+    HighlightDirective,
+    CategorieComponent
   ],
   imports: [
     BrowserModule,
