@@ -10,14 +10,37 @@ export class CategoriesComponent implements OnInit {
 
   categories: categorie[] = [
     {
-      id:1,
+      id:'1',
       image: 'assets/images/categories/camiseta_jurasic.png',
+      image2: 'assets/images/categories/camiseta.png',
       title: 'Moda',
       description: 'bla bla bla bla bla'
     },
     {
-      id:2,
+      id:'2',
       image: 'assets/images/categories/camioneta.png',
+      image2: 'assets/images/categories/camiseta.png',
+      title: 'Vehiculos',
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id:'2',
+      image: 'assets/images/categories/camioneta.png',
+      image2: 'assets/images/categories/camiseta.png',
+      title: 'Vehiculos',
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id:'2',
+      image: 'assets/images/categories/camioneta.png',
+      image2: 'assets/images/categories/camiseta.png',
+      title: 'Vehiculos',
+      description: 'bla bla bla bla bla'
+    },
+    {
+      id:'2',
+      image: 'assets/images/categories/camioneta.png',
+      image2: 'assets/images/categories/camiseta.png',
       title: 'Vehiculos',
       description: 'bla bla bla bla bla'
     }

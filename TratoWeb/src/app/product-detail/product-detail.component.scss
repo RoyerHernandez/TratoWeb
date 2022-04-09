@@ -34,6 +34,7 @@ img {
 .product-content{
     display: flex;
     align-items: center;
+    justify-content:space-around; 
 }
 .product-price{
     display: flex;
@@ -42,4 +43,3 @@ img {
     align-items: center;
     justify-content:space-around;   
 }
-

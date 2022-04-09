@@ -6,6 +6,7 @@ import { ExchangesComponent } from './exchanges/exchanges.component';
 import { AuctionsComponent } from './auctions/auctions.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
   },{
     path: 'products',
     component: ProductsComponent
+  },{
+    path: 'products/:id',
+    component: ProductDetailComponent
   },{
     path:'contact',
     component: ContactComponent

@@ -17,6 +17,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './product/product.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { CategorieComponent } from './categorie/categorie.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CategorieComponent } from './categorie/categorie.component';
     ProductsComponent,
     ProductComponent,
     HighlightDirective,
-    CategorieComponent
+    CategorieComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

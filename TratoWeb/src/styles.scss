@@ -7,10 +7,18 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
 }
+.categorie-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
 
 @media (min-width: 576px){
     .product-grid{
         grid-template-columns: repeat(2, 1fr);
+    }
+    .categorie-grid{
+        grid-template-columns: repeat(1, 1fr);
     }
     .product-price{
         display: flex;
@@ -23,5 +31,8 @@
 @media (min-width: 800px){
     .product-grid{
         grid-template-columns: repeat(3, 1fr);
+    }
+    .categorie-grid{
+        grid-template-columns: repeat(1, 1fr);
     }
 }

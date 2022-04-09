@@ -1,6 +1,7 @@
 export interface categorie{
-    id: number,
+    id: string,
     title: string,
     description: string,
     image: string
+    image2: string
 }

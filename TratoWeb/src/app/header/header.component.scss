@@ -5,3 +5,42 @@ nav > a {
 nav a.active {
     background-color: plum;
 }
+.logSearch{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    justify-content:space-between; 
+}
+.search{
+    position: static;
+    width: 565px;
+    height: 43px;
+    left: 437px;
+    top: 75px;
+    
+    background: #FFFFFF;
+    border: 2px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+.buttonIngresar{
+width: 100px;
+height: 43px;
+color: white;
+margin: 5px;
+background: #9F3F91;
+border: 2px solid #9F3F91;
+box-sizing: border-box;
+border-radius: 12px;
+}
+.buttonRegistro{
+    width: 100px;
+    height: 43px;
+    color: white;
+    margin: 5px;
+    background: #9F3F91;
+    border: 2px solid #9F3F91;
+    box-sizing: border-box;
+    border-radius: 12px;
+}

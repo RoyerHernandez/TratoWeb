@@ -1,9 +1,14 @@
 <app-header></app-header>
-<div class="categorie-grid">
+<section>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
     <app-categorie 
     *ngFor="let categorie of categories " 
     [categorie]="categorie">      
     </app-categorie>    
   </div>
+  </div>  
+</section>
+
 
 

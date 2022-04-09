@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { product } from '../product/product.model';
 
+import {ProductsService} from '../services/products.service';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -8,54 +10,12 @@ import { product } from '../product/product.model';
 })
 export class ProductsComponent implements OnInit {
 
-  products: product[] = [
-    {
-      id: 1,
-      image: 'assets/images/camiseta.png',
-      title: 'Camiseta',
-      price: 80000,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: 2,
-      image: 'assets/images/hoodie.png',
-      title: 'Hoodie',
-      price: 80000,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: 3,
-      image: 'assets/images/mug.png',
-      title: 'Mug',
-      price: 80000,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: 4,
-      image: 'assets/images/pin.png',
-      title: 'Pin',
-      price: 80000,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: 5,
-      image: 'assets/images/stickers1.png',
-      title: 'Stickers',
-      price: 80000,
-      description: 'bla bla bla bla bla'
-    },
-    {
-      id: 6,
-      image: 'assets/images/stickers2.png',
-      title: 'Stickers',
-      price: 80000,
-      description: 'bla bla bla bla bla'
-    },
-  ];
+  Products!: product[];
 
-  constructor() { }
+  constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this.Products = this.productsService.getAllProducts();
   }
 
   clickProduct(id: number){
