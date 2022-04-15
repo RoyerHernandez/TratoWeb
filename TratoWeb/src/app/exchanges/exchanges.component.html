@@ -1,2 +1,24 @@
-<app-header></app-header>
-<p>exchanges works!</p>
+<img class="img-logo" src="assets/images/logo/exchangesLogo.png">
+
+<div class="exchange-frame">
+    <div class="auction-grid" >
+        <div class="exchange-content" *ngFor="let exch of exchange">                          
+                <img [src]="exch.image" [alt]="exch.description">    
+                <div class="exchange-bid">               
+                    <P class="title-color">{{exch.productName| uppercase}} </P>                           
+                </div>             
+                <img class="img-exchangeState" [src]="exch.exchangesState" [alt]="exch.description">
+        </div>
+    </div>
+    <div class="exchange-menu">
+        <div class="union"> 
+            <img class="union-menu" src="assets/images/logo/subtractMenu.png" alt="">
+            <P><strong><a routerLink="/home" routerLinkActive="active">Inicio</a></strong></P></div>            
+        <div class="union"> 
+            <img class="union-menu" src="assets/images/logo/subtractMenu.png" alt="">
+            <P><strong><a routerLink="/products" routerLinkActive="active">Ver Mas Productos</a></strong></P></div>            
+        <div class="union">            
+            <img class="union-menu" src="assets/images/logo/subtractMenu.png" alt="">
+            <P><strong>Crear Intercambio</strong></P></div>
+    </div>
+</div>
