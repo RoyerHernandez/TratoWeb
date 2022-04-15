@@ -13,19 +13,19 @@ export class BannerComponent implements OnInit {
       id: 1,
       title: 'Banner 1',
       description: 'Trato Principal',
-      image: 'assets/images/banner-1.jpg'
+      image: 'assets/images/banner/banner-1.jpg'
     },
     {
       id: 2,
       title: 'Banner 2',
       description: 'Trato Principal',
-      image: 'assets/images/banner-2.jpg'
+      image: 'assets/images/banner/banner-2.jpg'
     },
     {
       id: 3,
       title: 'Banner 3',
       description: 'Trato Principal',
-      image: 'assets/images/banner-3.jpg'
+      image: 'assets/images/banner/banner-3.jpg'
     }
   ];
 

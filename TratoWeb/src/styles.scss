@@ -11,6 +11,15 @@
     display: grid;
     grid-template-columns: repeat(1, 1fr);
 }
+.auction-grid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    border-color: gray;
+}
+.imageBanner{
+    width: 100%;
+    height: 100%;
+}
 
 
 @media (min-width: 576px){
@@ -20,6 +29,9 @@
     .categorie-grid{
         grid-template-columns: repeat(1, 1fr);
     }
+    .auction-grid{
+        grid-template-columns: repeat(2, 4fr);
+    }
     .product-price{
         display: flex;
         margin: 5px;
@@ -27,6 +39,7 @@
         align-items: center;
         justify-content:space-between;   
     }
+    
 }
 @media (min-width: 800px){
     .product-grid{
@@ -34,5 +47,19 @@
     }
     .categorie-grid{
         grid-template-columns: repeat(1, 1fr);
+    }
+    .auction-grid{
+        grid-template-columns: repeat(3, 4fr);
+    }
+    
+}
+
+@media (max-width: 600px){
+    .imageBanner{
+        width: 100%;        
+    }
+    .auction-grid{
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%
     }
 }

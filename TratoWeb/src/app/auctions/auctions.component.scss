@@ -1,0 +1,95 @@
+:host{
+    margin: 2px;
+    border: 1px solid whitesmoke;
+    border-radius: 5px;
+    display: block;
+    margin: 10px;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 7px 0px grey;    
+    
+}
+h3{
+    margin: 10px;
+}
+.img-logo{
+    margin-left: 20px;
+    width: 150px;
+    height: 182px;
+    background-color: rgb(255, 255, 255);
+}
+
+img {
+    position:static;
+    width: 100px;
+    height: 100px;
+    margin: 2px;
+    border-radius: 10px;
+    background-color: rgb(106, 111, 114);
+    padding: 10px;    
+    box-shadow: 0px, 1px, 7px, 0px grey;
+}
+
+.img-bidstate{
+    width: 50px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+}
+
+.description {
+    display: flex;
+    margin: 5px;
+    text-align:center;
+    padding: 20px;
+    align-items: center;
+}
+.auction-frame{
+    display: flex;
+    align-items: center;
+}
+.auctions-menu{
+   display: block;
+   align-items: center;
+   margin: 20px;
+   justify-content:space-around;  
+   color: rgba(14, 133, 163, 0.973);
+}
+.subtrack{
+    display: flex;
+    align-items: center;
+}
+.subtract-menu{
+    width: 30px;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+}
+
+.auction-content{
+    display: flex;
+    align-items: center;
+    border-color: gray;
+    padding: 2px;
+    margin: 10px;
+    box-sizing: border-box;
+    box-shadow: grey;
+    justify-content: space-around;
+}
+.auction-bid{
+    display: block;
+    margin: 20px;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    align-items: center;
+    justify-content:space-around;   
+}
+.title-color{
+    color: rgba(27, 231, 105, 0.973);
+}
+.bidValue-Color{
+    color: rgb(243, 64, 64);
+}
+.bidStart-color{
+    color: rgb(87, 90, 88);
+    text-decoration-line: underline;
+}
+

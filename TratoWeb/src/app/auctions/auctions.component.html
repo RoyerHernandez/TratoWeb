@@ -1,2 +1,40 @@
-<app-header></app-header>
-<p>auctions works!</p>
+
+<img class="img-logo" src="assets/images/logo/auctionsLogo.png">
+
+<div class="auction-frame">
+    <div class="auction-grid" >
+        <div class="auction-content" *ngFor="let auct of auction">                          
+                <img [src]="auct.image" [alt]="auct.description">    
+                <div class="auction-bid">               
+                    <P class="title-color">{{auct.product_name| uppercase}} </P>     
+                    <div class="bidValue-Color"><strong>{{auct.bidValue | currency}} </strong></div>  
+                    <P class="bidStart-color">{{auct.startValue}} </P>     
+                </div>             
+                <img class="img-bidstate" [src]="auct.bidState" [alt]="auct.description">
+        </div>
+    </div>
+    <div class="auctions-menu">
+        <div class="subtrack"> 
+            <img class="subtract-menu" src="assets/images/logo/subtractMenu.png" alt="">
+            <P><strong><a routerLink="/products" routerLinkActive="active">Ver Mas Productos</a></strong></P></div>            
+        <div class="subtrack">            
+            <img class="subtract-menu" src="assets/images/logo/subtractMenu.png" alt="">
+            <P><strong> Crear Subasta</strong></P></div>
+    </div>
+</div>
+
+ <!--   <div class="product-grid">
+        <app-product
+     *ngFor="let product of Products "         
+     [product]="product">
+    </app-product>                       
+    </div>    
+    <img [src]="Product.image" [alt]="Product.title" >
+    <div>
+        <ul>
+            <li>Nombre: {{Product.title}}</li>
+            <li>Precio: {{Product.price | currency}}</li>
+        </ul>
+        <p>Descripcion: {{Product.description}}</p>
+    </div> -->
+
