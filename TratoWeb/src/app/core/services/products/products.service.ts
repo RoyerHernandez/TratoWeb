@@ -7,37 +7,37 @@ import { product } from '../../../product/product.model';
 export class ProductsService {
 
   products: product[] = [
-    {id: 1,
+    {id: '1',
      image: 'assets/images/camiseta.png',
      title: 'Camiseta',
      price: 9000,
      description: 'bla bla bla bla bla'
     },
-    {id: 2,
+    {id: '2',
       image: 'assets/images/hoodie.png',
       title: 'Hoodie',
       price: 12000,
       description: 'bla bla bla bla bla'
      },
-     {id: 3,
+     {id: '3',
       image: 'assets/images/mug.png',
       title: 'Mug',
       price: 2000,
       description: 'bla bla bla bla bla'
      },
-     {id: 4,
+     {id: '4',
       image: 'assets/images/pin.png',
       title: 'Pin',
       price: 1000,
       description: 'bla bla bla bla bla'
      },
-     {id: 5,
+     {id: '5',
       image: 'assets/images/stickers1.png',
       title: 'Stickers',
       price: 900,
       description: 'bla bla bla bla bla'
      },
-     {id: 6,
+     {id: '6',
       image: 'assets/images/stickers2.png',
       title: 'Stickers',
       price: 900,
@@ -49,7 +49,7 @@ export class ProductsService {
     return this.products;
   }
 
-  GetProduct(id: number){
+  GetProduct(id: string){
     return this.products.find(item => id === item.id )
   }
 

@@ -3,7 +3,7 @@
 
 <div class="auction-frame">
     <div class="auction-grid" >
-        <div class="auction-content" *ngFor="let auct of auction">                          
+        <div class="auction-content" *ngFor="let auct of Auction">                          
                 <img [src]="auct.image" [alt]="auct.description">    
                 <div class="auction-bid">               
                     <P class="title-color">{{auct.product_name| uppercase}} </P>     
