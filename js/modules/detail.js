@@ -19,7 +19,7 @@ function initDetail(id) {
 
     <div class="detail-layout">
       <!-- Gallery -->
-      <div class="detail-gallery">
+      <div class="detail-left">
         <div class="detail-img" style="background:${a.gradient}">
           <img src="${a.imgUrl}" alt="${a.title}" loading="lazy"
             onerror="this.style.display='none';this.parentElement.querySelector('.detail-emoji').style.display='block'">
@@ -115,7 +115,7 @@ function initDetail(id) {
         </button>
 
         <div class="bid-guarantee">
-          <span class="material-symbols-rounded" style="font-size:14px;color:var(--green)">security</span>
+          <span class="material-symbols-rounded" style="font-size:14px;color:var(--success)">security</span>
           Transacción protegida por Trato
         </div>
 
@@ -138,7 +138,7 @@ function initDetail(id) {
           </div>
         </div>
 
-        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border)">
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--gray-200)">
           <button class="btn btn-ghost btn-full" onclick="navigate('won')" style="font-size:12px;opacity:0.7">
             <span class="material-symbols-rounded" style="font-size:14px">emoji_events</span>
             Ver ejemplo: Subasta ganada →

@@ -13,9 +13,9 @@ function initCreate() {
         <div class="form-section">
           <div class="form-section-title">Fotos del artículo</div>
           <div class="photo-drop" id="photoDrop" onclick="document.getElementById('photoInput').click()">
-            <span class="material-symbols-rounded" style="font-size:40px;color:var(--text-muted)">add_photo_alternate</span>
+            <span class="material-symbols-rounded" style="font-size:40px;color:var(--gray-400)">add_photo_alternate</span>
             <div style="margin-top:8px;font-weight:600">Subir fotos</div>
-            <div style="font-size:13px;color:var(--text-muted);margin-top:4px">Arrastra aquí o haz clic · Máx. 8 fotos</div>
+            <div style="font-size:13px;color:var(--gray-400);margin-top:4px">Arrastra aquí o haz clic · Máx. 8 fotos</div>
             <input type="file" id="photoInput" multiple accept="image/*" style="display:none" onchange="_handlePhotos(this)">
           </div>
           <div class="photo-previews" id="photoPreviews"></div>
@@ -135,13 +135,13 @@ function initCreate() {
         <div class="preview-label">Vista previa</div>
         <div id="previewCard" class="preview-card-wrap">
           <div class="preview-placeholder">
-            <span class="material-symbols-rounded" style="font-size:36px;color:var(--text-muted)">preview</span>
-            <div style="margin-top:8px;color:var(--text-muted);font-size:13px">Completa los campos para ver la vista previa</div>
+            <span class="material-symbols-rounded" style="font-size:36px;color:var(--gray-400)">preview</span>
+            <div style="margin-top:8px;color:var(--gray-400);font-size:13px">Completa los campos para ver la vista previa</div>
           </div>
         </div>
         <div class="preview-tips">
           <div class="tip-title">
-            <span class="material-symbols-rounded" style="font-size:14px;color:var(--orange)">lightbulb</span>
+            <span class="material-symbols-rounded" style="font-size:14px;color:var(--purple)">lightbulb</span>
             Consejos para vender más
           </div>
           <ul class="tip-list">
@@ -250,8 +250,8 @@ function _updatePreview() {
 
   if (!title && !price) {
     container.innerHTML = `<div class="preview-placeholder">
-      <span class="material-symbols-rounded" style="font-size:36px;color:var(--text-muted)">preview</span>
-      <div style="margin-top:8px;color:var(--text-muted);font-size:13px">Completa los campos para ver la vista previa</div>
+      <span class="material-symbols-rounded" style="font-size:36px;color:var(--gray-400)">preview</span>
+      <div style="margin-top:8px;color:var(--gray-400);font-size:13px">Completa los campos para ver la vista previa</div>
     </div>`;
     return;
   }

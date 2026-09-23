@@ -73,7 +73,7 @@ function initAuctions() {
         <div class="empty-state" style="grid-column:1/-1">
           <div style="font-size:48px;margin-bottom:12px">🔍</div>
           <div style="font-size:18px;font-weight:600;margin-bottom:8px">Sin resultados</div>
-          <div style="color:var(--text-muted)">Intenta con otros términos o categorías</div>
+          <div style="color:var(--gray-400)">Intenta con otros términos o categorías</div>
         </div>`;
     } else {
       grid.innerHTML = filtered.map(a => renderAuctionCard(a)).join('');

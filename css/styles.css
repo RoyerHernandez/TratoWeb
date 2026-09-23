@@ -562,6 +562,7 @@ img { display: block; max-width: 100%; }
 .chip.teal.active { background: var(--teal); color: white; border-color: var(--teal); }
 
 /* ── DETAIL VIEW ── */
+.detail-left { /* left column wrapper — no extra styles needed */ }
 .detail-layout {
   display: grid;
   grid-template-columns: 1fr 380px;

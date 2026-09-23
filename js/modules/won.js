@@ -44,7 +44,7 @@ function initWon() {
 
       <div class="won-deadline-card">
         <div class="won-deadline-left">
-          <span class="material-symbols-rounded" style="color:var(--orange)">schedule</span>
+          <span class="material-symbols-rounded" style="color:var(--teal)">schedule</span>
           <div>
             <div class="won-deadline-title">Tiempo para pagar</div>
             <div class="won-deadline-hint">Paga antes de que expire el plazo</div>
