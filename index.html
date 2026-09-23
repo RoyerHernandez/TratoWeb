@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Trato — Subastas e Intercambios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-layout">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">Tra<span>to</span></div>
+        <button class="btn-icon sidebar-toggle" id="sidebarToggle">
+          <span class="material-symbols-rounded">menu</span>
+        </button>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#" data-page="hub" class="nav-link active">
+          <span class="nav-icon material-symbols-rounded">home</span>
+          <span class="nav-text">Hub Principal</span>
+        </a></li>
+        <li><a href="#" data-page="auctions" class="nav-link">
+          <span class="nav-icon material-symbols-rounded">gavel</span>
+          <span class="nav-text">Subastas</span>
+        </a></li>
+        <li><a href="#" data-page="create" class="nav-link">
+          <span class="nav-icon material-symbols-rounded">add_circle</span>
+          <span class="nav-text">Crear Publicación</span>
+        </a></li>
+        <li><a href="#" data-page="won" class="nav-link">
+          <span class="nav-icon material-symbols-rounded">emoji_events</span>
+          <span class="nav-text">Mis Victorias</span>
+        </a></li>
+        <li class="nav-divider"></li>
+        <li><a href="#" class="nav-link disabled">
+          <span class="nav-icon material-symbols-rounded">swap_horiz</span>
+          <span class="nav-text">Intercambios</span>
+        </a></li>
+        <li><a href="#" class="nav-link disabled">
+          <span class="nav-icon material-symbols-rounded">chat_bubble</span>
+          <span class="nav-text">Mensajes</span>
+        </a></li>
+        <li><a href="#" class="nav-link disabled">
+          <span class="nav-icon material-symbols-rounded">history</span>
+          <span class="nav-text">Historial</span>
+        </a></li>
+        <li><a href="#" class="nav-link disabled">
+          <span class="nav-icon material-symbols-rounded">shield_person</span>
+          <span class="nav-text">Verificación</span>
+        </a></li>
+        <li><a href="#" class="nav-link disabled">
+          <span class="nav-icon material-symbols-rounded">settings</span>
+          <span class="nav-text">Configuración</span>
+        </a></li>
+      </ul>
+      <div class="sidebar-user">
+        <div class="user-avatar-sm">RH</div>
+        <div class="user-info">
+          <div class="user-name">Royer Hernandez</div>
+          <div class="user-verified"><span class="material-symbols-rounded" style="font-size:12px">verified</span> Verificado</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main area -->
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="btn-icon mobile-menu-btn" id="mobileMenuBtn">
+            <span class="material-symbols-rounded">menu</span>
+          </button>
+          <div class="topbar-search">
+            <span class="material-symbols-rounded">search</span>
+            <input type="text" placeholder="Buscar subastas, intercambios..." id="globalSearch">
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn-icon notif-btn" onclick="showToast('Tienes 3 notificaciones nuevas', 'info')">
+            <span class="material-symbols-rounded">notifications</span>
+            <span class="notif-dot"></span>
+          </button>
+          <div class="topbar-avatar" onclick="navigate('hub')" title="Mi perfil">RH</div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div id="app-content"></div>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Modal de confirmación de puja -->
+  <div class="modal-overlay" id="bidModal" style="display:none">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>Confirmar puja</h3>
+        <button class="btn-icon" onclick="closeBidModal()">
+          <span class="material-symbols-rounded">close</span>
+        </button>
+      </div>
+      <div class="modal-body" id="bidModalBody"></div>
+      <div class="modal-footer">
+        <button class="btn btn-ghost" onclick="closeBidModal()">Cancelar</button>
+        <button class="btn btn-primary" onclick="confirmBid()">Confirmar puja</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js" defer></script>
+  <script src="js/modules/hub.js" defer></script>
+  <script src="js/modules/auctions.js" defer></script>
+  <script src="js/modules/create.js" defer></script>
+  <script src="js/modules/detail.js" defer></script>
+  <script src="js/modules/won.js" defer></script>
+  <script src="js/app.js" defer></script>
+</body>
+</html>
