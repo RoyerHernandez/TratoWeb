@@ -19,25 +19,39 @@ function navigate(page, id) {
   // Update nav active state
   document.querySelectorAll('.nav-link').forEach(el => {
     el.classList.remove('active');
-    if (el.dataset.page === page) el.classList.add('active');
+    // Match 'exchanges' page name to the exchanges nav item
+    const elPage = el.dataset.page;
+    if (elPage === page) el.classList.add('active');
+    // Treat exchange-detail as sub-page of exchanges
+    if (page === 'exchange-detail' && elPage === 'exchanges') el.classList.add('active');
+    // Treat detail as sub-page of auctions
+    if (page === 'detail' && elPage === 'auctions') el.classList.add('active');
   });
 
   // Close mobile sidebar
   document.getElementById('sidebar')?.classList.remove('open');
   document.getElementById('sidebarOverlay')?.classList.remove('active');
 
-  // Route
+  // Remove any floating FAB from previous page before routing
+  // (each page that needs a FAB will create its own)
+  const prevFab = document.querySelector('.fab');
+  if (prevFab) prevFab.remove();
+
+  // Scroll to top
   const content = document.getElementById('app-content');
   if (content) content.scrollTop = 0;
   document.querySelector('.main-content')?.scrollTo(0, 0);
 
+  // Route
   switch (page) {
-    case 'hub':      initHub();         break;
-    case 'auctions': initAuctions();    break;
-    case 'create':   initCreate();      break;
-    case 'detail':   initDetail(id);    break;
-    case 'won':      initWon();         break;
-    default:         initHub();
+    case 'hub':             initHub();              break;
+    case 'auctions':        initAuctions();         break;
+    case 'exchanges':       initExchanges();        break;
+    case 'create':          initCreate();           break;
+    case 'detail':          initDetail(id);         break;
+    case 'exchange-detail': initExchangeDetail(id); break;
+    case 'won':             initWon();              break;
+    default:                initHub();
   }
 }
 
@@ -82,15 +96,15 @@ function openBidModal(auction, amount) {
         </div>
         <div class="modal-bid-row modal-bid-row-highlight">
           <span><strong>Tu puja</strong></span>
-          <span><strong style="color:var(--orange)">${D.fmt(amount)}</strong></span>
+          <span><strong style="color:var(--purple)">${D.fmt(amount)}</strong></span>
         </div>
-        <div class="modal-bid-row" style="color:var(--text-muted);font-size:12px">
+        <div class="modal-bid-row" style="color:var(--gray-400);font-size:12px">
           <span>Comisión Trato (0%)</span>
           <span>$0</span>
         </div>
       </div>
       <div class="modal-bid-notice">
-        <span class="material-symbols-rounded" style="font-size:14px;color:var(--orange)">info</span>
+        <span class="material-symbols-rounded" style="font-size:14px;color:var(--purple)">info</span>
         Al confirmar, te comprometes a pagar si ganas la subasta.
       </div>
     </div>
@@ -132,13 +146,7 @@ function confirmBid() {
 function _initSidebar() {
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sidebarOverlay');
-  const toggleBtn = document.getElementById('sidebarToggle');
   const mobileBtn = document.getElementById('mobileMenuBtn');
-
-  // Desktop collapse toggle
-  toggleBtn?.addEventListener('click', () => {
-    sidebar.classList.toggle('collapsed');
-  });
 
   // Mobile open
   mobileBtn?.addEventListener('click', () => {

@@ -6,7 +6,7 @@
   <title>Trato — Subastas e Intercambios</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -17,10 +17,14 @@
     <!-- Sidebar -->
     <nav class="sidebar" id="sidebar">
       <div class="sidebar-header">
-        <div class="logo">Tra<span>to</span></div>
-        <button class="btn-icon sidebar-toggle" id="sidebarToggle">
-          <span class="material-symbols-rounded">menu</span>
-        </button>
+        <div class="logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="9" y="0" width="6" height="16" rx="1.5" fill="#8B2FC9"/>
+            <rect x="0" y="9" width="16" height="6" rx="1.5" fill="#8B2FC9"/>
+            <rect x="13" y="13" width="9" height="7" rx="1.5" fill="#3CBCB8"/>
+          </svg>
+          <span class="logo-word">trato</span>
+        </div>
       </div>
       <ul class="nav-menu">
         <li><a href="#" data-page="hub" class="nav-link active">
@@ -31,6 +35,10 @@
           <span class="nav-icon material-symbols-rounded">gavel</span>
           <span class="nav-text">Subastas</span>
         </a></li>
+        <li><a href="#" data-page="exchanges" class="nav-link">
+          <span class="nav-icon material-symbols-rounded">swap_horiz</span>
+          <span class="nav-text">Intercambios</span>
+        </a></li>
         <li><a href="#" data-page="create" class="nav-link">
           <span class="nav-icon material-symbols-rounded">add_circle</span>
           <span class="nav-text">Crear Publicación</span>
@@ -40,10 +48,6 @@
           <span class="nav-text">Mis Victorias</span>
         </a></li>
         <li class="nav-divider"></li>
-        <li><a href="#" class="nav-link disabled">
-          <span class="nav-icon material-symbols-rounded">swap_horiz</span>
-          <span class="nav-text">Intercambios</span>
-        </a></li>
         <li><a href="#" class="nav-link disabled">
           <span class="nav-icon material-symbols-rounded">chat_bubble</span>
           <span class="nav-text">Mensajes</span>
@@ -65,7 +69,10 @@
         <div class="user-avatar-sm">RH</div>
         <div class="user-info">
           <div class="user-name">Royer Hernandez</div>
-          <div class="user-verified"><span class="material-symbols-rounded" style="font-size:12px">verified</span> Verificado</div>
+          <div class="user-verified">
+            <span class="material-symbols-rounded" style="font-size:12px">verified</span>
+            Verificado
+          </div>
         </div>
       </div>
     </nav>
@@ -119,6 +126,7 @@
   <script src="js/data.js" defer></script>
   <script src="js/modules/hub.js" defer></script>
   <script src="js/modules/auctions.js" defer></script>
+  <script src="js/modules/exchanges.js" defer></script>
   <script src="js/modules/create.js" defer></script>
   <script src="js/modules/detail.js" defer></script>
   <script src="js/modules/won.js" defer></script>
