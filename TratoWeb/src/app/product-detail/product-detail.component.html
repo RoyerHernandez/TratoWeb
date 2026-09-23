@@ -1,0 +1,11 @@
+<app-header></app-header>
+<div>
+    <img [src]="Product.image" [alt]="Product.title" >
+</div>
+<div>
+    <ul>
+        <li>Nombre: {{Product.title}}</li>
+        <li>Precio: {{Product.price | currency}}</li>
+    </ul>
+    <p>Descripcion: {{Product.description}}</p>
+</div>
