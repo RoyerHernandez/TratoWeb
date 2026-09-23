@@ -213,7 +213,7 @@ img { display: block; max-width: 100%; }
   font-family: var(--font);
 }
 .topbar-search input::placeholder { color: var(--gray-400); }
-.mobile-menu-btn { display: none; }
+.mobile-menu-btn { display: none !important; }
 .notif-btn { position: relative; }
 .notif-dot {
   position: absolute; top: 6px; right: 6px;
