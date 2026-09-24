@@ -242,6 +242,27 @@ window.TRATO_DATA = {
     transactionId: 'TRT-2024-001842',
   },
 
+  sellers: [
+    {
+      id: 'maru-joyeria',
+      name: 'Maru Joyería',
+      initials: 'MJ',
+      tagline: 'Esmeraldas Colombianas · Joyería Artesanal',
+      gradient: 'linear-gradient(135deg, #8B2FC9 0%, #3CBCB8 100%)',
+      badges: ['✅ Identidad verificada', '💎 Esmeraldas', '🏆 Top Vendedor'],
+      location: 'Bogotá, Colombia',
+      memberSince: 'mar 2023',
+      rating: 4.9,
+      sales: 247,
+      activeListings: 8,
+      followers: 1200,
+      deliveryRate: 98,
+      verification: { cedula: true, facial: true, phone: true },
+      ratingDistribution: { 5: 92, 4: 6, 3: 2, 2: 0, 1: 0 },
+      bio: 'Especialistas en esmeraldas colombianas y joyería artesanal fina. Más de 15 años de experiencia en el mercado de Bogotá. Todas nuestras piedras tienen certificado de origen.',
+    },
+  ],
+
   categories: [
     { id: 'all', label: 'Todos' },
     { id: 'joyeria', label: 'Joyería' },

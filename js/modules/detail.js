@@ -11,6 +11,13 @@ function initDetail(id) {
   if (_bidSimInterval) clearInterval(_bidSimInterval);
 
   const cd = D.countdown(a.endsAt);
+  const sellerProfile = D.sellers && D.sellers.find(s => s.name === a.seller.name);
+  const sellerCardAttr = sellerProfile
+    ? `class="seller-card seller-card-link" onclick="navigate('seller','${sellerProfile.id}')"`
+    : 'class="seller-card"';
+  const sellerActionBtn = sellerProfile
+    ? `<button class="btn btn-primary btn-sm" onclick="event.stopPropagation();navigate('seller','${sellerProfile.id}')"><span class="material-symbols-rounded" style="font-size:15px">store</span> Ver perfil</button>`
+    : `<button class="btn btn-ghost btn-sm">Contactar</button>`;
 
   document.getElementById('app-content').innerHTML = `
     <button class="btn-back" onclick="navigate('auctions')">
@@ -37,7 +44,7 @@ function initDetail(id) {
 
         <h1 class="detail-title">${a.title}</h1>
 
-        <div class="seller-card">
+        <div ${sellerCardAttr}>
           <div class="seller-avatar">${a.seller.initials}</div>
           <div class="seller-info">
             <div class="seller-name">
@@ -50,7 +57,7 @@ function initDetail(id) {
               <span>${a.seller.sales} ventas</span>
             </div>
           </div>
-          <button class="btn btn-ghost btn-sm">Contactar</button>
+          ${sellerActionBtn}
         </div>
 
         <div class="detail-section">

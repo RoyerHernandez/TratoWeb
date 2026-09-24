@@ -24,8 +24,9 @@ function navigate(page, id) {
     if (elPage === page) el.classList.add('active');
     // Treat exchange-detail as sub-page of exchanges
     if (page === 'exchange-detail' && elPage === 'exchanges') el.classList.add('active');
-    // Treat detail as sub-page of auctions
+    // Treat detail/seller as sub-pages of auctions
     if (page === 'detail' && elPage === 'auctions') el.classList.add('active');
+    if (page === 'seller' && elPage === 'auctions') el.classList.add('active');
   });
 
   // Close mobile sidebar
@@ -51,6 +52,7 @@ function navigate(page, id) {
     case 'detail':          initDetail(id);         break;
     case 'exchange-detail': initExchangeDetail(id); break;
     case 'won':             initWon();              break;
+    case 'seller':          initSeller(id);         break;
     default:                initHub();
   }
 }

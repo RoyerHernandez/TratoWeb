@@ -2,6 +2,11 @@ function initWon() {
   const D = window.TRATO_DATA;
   const w = D.wonAuction;
   const cd = D.countdown(w.payDeadline);
+  const wonSellerProfile = D.sellers && D.sellers.find(s => s.name === w.seller.name);
+  const wonSellerAttr = wonSellerProfile
+    ? `onclick="navigate('seller','${wonSellerProfile.id}')" style="cursor:pointer"`
+    : '';
+  const wonSellerNameStyle = wonSellerProfile ? 'color:var(--purple);font-weight:700' : '';
 
   document.getElementById('app-content').innerHTML = `
     <div class="won-container">
@@ -20,9 +25,9 @@ function initWon() {
         <div class="won-item-info">
           <div class="won-item-category">Joyería</div>
           <div class="won-item-title">${w.title}</div>
-          <div class="won-seller">
+          <div class="won-seller" ${wonSellerAttr}>
             <div class="won-seller-avatar">${w.seller.initials}</div>
-            <span>${w.seller.name}</span>
+            <span style="${wonSellerNameStyle}">${w.seller.name}</span>
           </div>
         </div>
       </div>

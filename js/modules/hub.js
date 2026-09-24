@@ -92,6 +92,10 @@ function renderAuctionCard(a) {
   const badge = a.badge
     ? `<div class="pcard-live badge-${a.badge === 'hot' ? 'hot' : a.badge === 'new' ? 'new' : 'ending'}">${a.badgeLabel}</div>`
     : '';
+  const sp = D.sellers && D.sellers.find(s => s.name === a.seller.name);
+  const sellerHtml = sp
+    ? `<a class="pcard-seller-link" onclick="event.stopPropagation();navigate('seller','${sp.id}')">${a.seller.name}</a>`
+    : `<div class="pcard-seller">${a.seller.name}</div>`;
 
   return `
     <div class="pcard" onclick="navigate('detail', ${a.id})">
@@ -107,7 +111,7 @@ function renderAuctionCard(a) {
       <div class="pcard-body">
         <div class="pcard-cat">${a.categoryLabel}</div>
         <div class="pcard-title">${a.title}</div>
-        <div class="pcard-seller">${a.seller.name}</div>
+        ${sellerHtml}
         <div class="pcard-footer">
           <div>
             <div class="pcard-price-lbl">Puja actual</div>
