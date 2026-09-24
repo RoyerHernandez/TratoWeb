@@ -145,6 +145,26 @@ function confirmBid() {
   setTimeout(() => navigate('detail', auction.id), 400);
 }
 
+// ── THEME ──
+function toggleTheme() {
+  document.body.classList.add('theme-transitioning');
+  const isDark = document.body.classList.toggle('dark');
+  localStorage.setItem('trato_theme', isDark ? 'dark' : 'light');
+  const icon = document.getElementById('themeIcon');
+  if (icon) icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+  setTimeout(() => document.body.classList.remove('theme-transitioning'), 300);
+}
+
+function _initTheme() {
+  const saved = localStorage.getItem('trato_theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (saved === 'dark' || (!saved && prefersDark)) {
+    document.body.classList.add('dark');
+    const icon = document.getElementById('themeIcon');
+    if (icon) icon.textContent = 'light_mode';
+  }
+}
+
 // ── SIDEBAR ──
 function _initSidebar() {
   const sidebar = document.getElementById('sidebar');
@@ -213,6 +233,7 @@ function _initKeyboard() {
 
 // ── BOOT ──
 document.addEventListener('DOMContentLoaded', () => {
+  _initTheme();
   _initSidebar();
   _initNav();
   _initSearch();
