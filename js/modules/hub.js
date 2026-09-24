@@ -45,6 +45,18 @@ function initHub() {
       </div>
     </div>
 
+    <div class="hub-seller-cta" onclick="navigate('onboarding')">
+      <div class="hub-seller-cta-icon">🏪</div>
+      <div class="hub-seller-cta-content">
+        <div class="hub-seller-cta-title">¿Tienes algo para vender?</div>
+        <div class="hub-seller-cta-sub">Crea tu tienda verificada y llega a compradores que confían en Trato</div>
+      </div>
+      <button class="btn btn-primary" onclick="event.stopPropagation();navigate('onboarding')">
+        <span class="material-symbols-rounded">storefront</span>
+        Crear mi perfil
+      </button>
+    </div>
+
     <div class="section-header">
       <div>
         <div class="section-title">Subastas destacadas <span class="live-dot" style="margin-left:10px">EN VIVO</span></div>

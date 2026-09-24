@@ -53,6 +53,7 @@ function navigate(page, id) {
     case 'exchange-detail': initExchangeDetail(id); break;
     case 'won':             initWon();              break;
     case 'seller':          initSeller(id);         break;
+    case 'onboarding':      initOnboarding();       break;
     default:                initHub();
   }
 }
