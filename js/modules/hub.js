@@ -67,6 +67,32 @@ function initHub() {
 
     <div style="margin-top:28px">
       <div class="section-header">
+        <div class="section-title">📱 Pantallas Mobile — Nuevo diseño</div>
+      </div>
+      <div class="mobile-screens-row">
+        <a href="mobile-splash.html" class="mobile-screen-card" target="_blank">
+          <div class="mobile-screen-card-icon">🎯</div>
+          <div class="mobile-screen-card-title">Splash</div>
+          <div class="mobile-screen-card-desc">Logo nuevo · Fondo blanco</div>
+          <span class="mobile-screen-badge">Nuevo PDF</span>
+        </a>
+        <a href="mobile-bienvenida.html" class="mobile-screen-card" target="_blank">
+          <div class="mobile-screen-card-icon">🟣</div>
+          <div class="mobile-screen-card-title">Bienvenida</div>
+          <div class="mobile-screen-card-desc">Botones circulares · Iniciar / Crear</div>
+          <span class="mobile-screen-badge">Nuevo PDF</span>
+        </a>
+        <a href="mobile-home.html" class="mobile-screen-card" target="_blank">
+          <div class="mobile-screen-card-icon">🏠</div>
+          <div class="mobile-screen-card-title">Home Mobile</div>
+          <div class="mobile-screen-card-desc">Fondo lima · Subastas · Intercambios · Destacados</div>
+          <span class="mobile-screen-badge">Nuevo PDF</span>
+        </a>
+      </div>
+    </div>
+
+    <div style="margin-top:28px">
+      <div class="section-header">
         <div class="section-title">Actividad reciente</div>
       </div>
       <div class="card">

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Trato — Splash</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .splash-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 680px;
+      background: #ffffff;
+      padding: 40px 28px;
+    }
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+    .brand-text {
+      font-size: 72px;
+      font-weight: 900;
+      color: var(--purple);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .brand-o {
+      display: inline-flex;
+      align-items: center;
+      width: 72px;
+      height: 72px;
+      margin-left: -4px;
+    }
+    .brand-tagline {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--teal);
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body class="mp-body">
+<div class="mp-frame">
+  <div class="mp-notch"></div>
+  <div class="mp-screen">
+    <div class="splash-screen">
+      <div class="brand-logo">
+        <span class="brand-text">trat</span>
+        <span class="brand-o">
+          <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" width="72" height="72">
+            <path d="M36 8 C50.36 8 62 19.64 62 34 C62 48.36 50.36 60 36 60 C21.64 60 10 48.36 10 34 C10 22.5 17.2 12.7 27.5 9"
+                  stroke="#3300CC" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <polygon points="27.5,9 14,4 12,18" fill="#3300CC"/>
+          </svg>
+        </span>
+      </div>
+      <div class="brand-tagline">Subastas e Intercambios</div>
+    </div>
+  </div>
+</div>
+<nav class="mp-nav">
+  <a href="mobile-bienvenida.html">Siguiente →</a>
+  <span>·</span>
+  <a href="index.html">← Demo</a>
+</nav>
+</body>
+</html>

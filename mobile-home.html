@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Trato — Home Mobile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .home-wrap { background: #E8F5C0; min-height: 100%; }
+
+    /* Header */
+    .pdf-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px 10px; background: #E8F5C0;
+    }
+    .pdf-header-logo {
+      display: flex; align-items: center; gap: 1px;
+      font-size: 22px; font-weight: 900; color: var(--purple);
+      letter-spacing: -0.5px; cursor: pointer;
+    }
+    .pdf-header-logo-o { display: inline-flex; align-items: center; width: 24px; height: 24px; }
+    .pdf-search-bar {
+      flex: 1; margin: 0 12px; height: 36px;
+      background: white; border-radius: 18px;
+      border: 1.5px solid #D0D0D0;
+      display: flex; align-items: center; padding: 0 12px; gap: 6px;
+    }
+    .pdf-user-icon {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+
+    /* Hero */
+    .pdf-hero {
+      background: #DCF2A0; margin: 0 8px;
+      border-radius: 16px; padding: 20px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 110px; overflow: hidden;
+    }
+    .pdf-hero-text {
+      font-size: 20px; font-weight: 700; color: var(--purple);
+      line-height: 1.3; max-width: 55%;
+    }
+    .pdf-hero-img { width: 110px; height: 90px; object-fit: contain; flex-shrink: 0; }
+
+    /* Cards */
+    .pdf-main-cards { padding: 14px 8px 0; display: flex; flex-direction: column; gap: 12px; }
+    .pdf-cat-card {
+      background: white; border-radius: 20px; padding: 22px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; transition: transform 0.15s;
+      border: none; width: 100%; text-align: left; font-family: var(--font);
+    }
+    .pdf-cat-card:hover { transform: scale(1.01); }
+    .pdf-cat-title { font-size: 32px; font-weight: 900; color: var(--purple); letter-spacing: -0.5px; }
+
+    /* CTA */
+    .pdf-cta {
+      margin: 14px 8px 0; border-radius: 16px;
+      overflow: hidden; position: relative; min-height: 130px;
+      background: #ccc url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=360&q=60') center/cover no-repeat;
+    }
+    .pdf-cta-overlay {
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,0.55);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 16px; gap: 12px;
+    }
+    .pdf-cta-text { font-size: 18px; font-weight: 700; color: var(--purple); text-align: center; line-height: 1.3; }
+    .pdf-cta-btn {
+      background: var(--purple); color: white; border: none;
+      border-radius: 999px; padding: 10px 28px;
+      font-size: 16px; font-weight: 700; font-family: var(--font); cursor: pointer;
+    }
+
+    /* Destacados */
+    .pdf-destacados-title {
+      text-align: center; font-size: 24px; font-weight: 900;
+      color: var(--purple); margin: 20px 0 12px;
+    }
+    .pdf-products-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 8px; }
+    .pdf-product-img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; display: block; }
+    .pdf-product-ph {
+      width: 100%; aspect-ratio: 1; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; background: #f0f0f0;
+    }
+
+    /* Bottom nav */
+    .pdf-bottom-nav {
+      display: flex; justify-content: space-around; align-items: center;
+      padding: 14px 8px 16px; background: #E8F5C0;
+      margin-top: 16px; border-top: 1.5px solid #C8DFA0;
+    }
+    .pdf-nav-icon { display: flex; align-items: center; justify-content: center; cursor: pointer; }
+  </style>
+</head>
+<body class="mp-body">
+<div class="mp-frame">
+  <div class="mp-notch"></div>
+  <div class="mp-screen">
+    <div class="home-wrap">
+
+      <!-- Header -->
+      <div class="pdf-header">
+        <div class="pdf-user-icon">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+            <circle cx="15" cy="15" r="14" stroke="#3300CC" stroke-width="2"/>
+            <circle cx="15" cy="11" r="4.5" stroke="#3300CC" stroke-width="2"/>
+            <path d="M6 25 C6 20 9.5 17 15 17 C20.5 17 24 20 24 25" stroke="#3300CC" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pdf-search-bar">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="6" cy="6" r="4.5" stroke="#888" stroke-width="1.5"/>
+            <path d="M9.5 9.5 L13 13" stroke="#888" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="pdf-header-logo" onclick="window.location.href='mobile-splash.html'">
+          trat
+          <span class="pdf-header-logo-o">
+            <svg viewBox="0 0 24 24" fill="none" width="24" height="24">
+              <path d="M12 3 C18 3 21 7.5 21 12 C21 16.5 18 21 12 21 C6 21 3 16.5 3 12 C3 7.7 6 4 10 3"
+                    stroke="#3300CC" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <polygon points="10,3 4,1 3,7" fill="#3300CC"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Hero -->
+      <div class="pdf-hero">
+        <div class="pdf-hero-text">Tu lo tienes<br>alguien lo<br>necesita</div>
+        <img class="pdf-hero-img"
+             src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=70"
+             alt="Reloj"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:110px;height:90px;align-items:center;justify-content:center;font-size:40px;">⌚</div>
+      </div>
+
+      <!-- Cards -->
+      <div class="pdf-main-cards">
+        <button class="pdf-cat-card" onclick="window.location.href='index.html'">
+          <span class="pdf-cat-title">Subastas</span>
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+            <rect x="38" y="44" width="10" height="26" rx="3" transform="rotate(-45 38 44)" fill="#8DC63F"/>
+            <rect x="12" y="10" width="32" height="20" rx="5" transform="rotate(-45 12 10)" fill="#8DC63F"/>
+            <rect x="18" y="58" width="36" height="8" rx="4" fill="#8DC63F"/>
+          </svg>
+        </button>
+        <button class="pdf-cat-card" onclick="window.location.href='index.html'">
+          <span class="pdf-cat-title">Intercambios</span>
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+            <path d="M18 36 A18 18 0 0 1 54 36" stroke="#8DC63F" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <polygon points="54,36 46,28 62,28" fill="#8DC63F"/>
+            <path d="M54 36 A18 18 0 0 1 18 36" stroke="#8DC63F" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <polygon points="18,36 26,44 10,44" fill="#8DC63F"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- CTA -->
+      <div class="pdf-cta">
+        <div class="pdf-cta-overlay">
+          <div class="pdf-cta-text">Tienes algo para<br>subastar o vender</div>
+          <button class="pdf-cta-btn" onclick="window.location.href='index.html'">Crear publicación</button>
+        </div>
+      </div>
+
+      <!-- Destacados -->
+      <div class="pdf-destacados-title">Destacados</div>
+      <div class="pdf-products-grid">
+        <img class="pdf-product-img"
+             src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=70"
+             alt="Anillos"
+             onerror="this.style.display='none'">
+        <img class="pdf-product-img"
+             src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&q=70"
+             alt="Bicicleta"
+             onerror="this.style.display='none'">
+        <div class="pdf-product-ph">💍</div>
+        <div class="pdf-product-ph">🚲</div>
+      </div>
+
+      <!-- Bottom Nav -->
+      <div class="pdf-bottom-nav">
+        <div class="pdf-nav-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="4" y="7" width="20" height="3" rx="1.5" fill="#3300CC"/>
+            <rect x="4" y="13" width="20" height="3" rx="1.5" fill="#3300CC"/>
+            <rect x="4" y="19" width="20" height="3" rx="1.5" fill="#3300CC"/>
+          </svg>
+        </div>
+        <div class="pdf-nav-icon" style="background:rgba(51,0,204,0.08);border-radius:10px;padding:4px 8px;">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M4 14 L14 5 L24 14" stroke="#3300CC" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+            <path d="M7 12 L7 23 L12 23 L12 18 L16 18 L16 23 L21 23 L21 12" stroke="#3300CC" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="pdf-nav-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="4" y="7" width="20" height="14" rx="3" stroke="#3300CC" stroke-width="2.5" fill="none"/>
+            <path d="M4 10 L14 17 L24 10" stroke="#3300CC" stroke-width="2" stroke-linecap="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="pdf-nav-icon" onclick="window.location.href='index.html'">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <rect x="4" y="5" width="12" height="18" rx="2.5" stroke="#3300CC" stroke-width="2.5" fill="none"/>
+            <path d="M18 10 L24 14 L18 18" stroke="#3300CC" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+            <path d="M12 14 L24 14" stroke="#3300CC" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<nav class="mp-nav">
+  <a href="index.html">← Volver al demo</a>
+  <span>·</span>
+  <a href="mobile-bienvenida.html">← Bienvenida</a>
+</nav>
+</body>
+</html>
