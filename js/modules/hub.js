@@ -9,6 +9,32 @@ function initHub() {
       <p>Aquí está lo que está pasando en Trato hoy.</p>
     </div>
 
+    <div style="margin-top:16px">
+      <div class="section-header">
+        <div class="section-title">📱 Pantallas Mobile — Nuevo diseño</div>
+      </div>
+      <div class="mobile-screens-row">
+        <a href="mobile-splash.html" class="mobile-screen-card" target="_blank">
+          <div class="mobile-screen-card-icon">🎯</div>
+          <div class="mobile-screen-card-title">Splash</div>
+          <div class="mobile-screen-card-desc">Logo nuevo · Fondo blanco</div>
+          <span class="mobile-screen-badge">Nuevo PDF</span>
+        </a>
+        <a href="mobile-bienvenida.html" class="mobile-screen-card" target="_blank">
+          <div class="mobile-screen-card-icon">🟣</div>
+          <div class="mobile-screen-card-title">Bienvenida</div>
+          <div class="mobile-screen-card-desc">Botones circulares · Iniciar / Crear</div>
+          <span class="mobile-screen-badge">Nuevo PDF</span>
+        </a>
+        <a href="mobile-home.html" class="mobile-screen-card" target="_blank">
+          <div class="mobile-screen-card-icon">🏠</div>
+          <div class="mobile-screen-card-title">Home Mobile</div>
+          <div class="mobile-screen-card-desc">Fondo lima · Subastas · Intercambios · Destacados</div>
+          <span class="mobile-screen-badge">Nuevo PDF</span>
+        </a>
+      </div>
+    </div>
+
     <div class="kpi-row">
       <div class="kpi purple">
         <div class="kpi-label">Subastas activas</div>
@@ -64,32 +90,6 @@ function initHub() {
       <div class="section-link" onclick="navigate('auctions')">Ver todas →</div>
     </div>
     <div class="auction-grid" id="hub-grid"></div>
-
-    <div style="margin-top:28px">
-      <div class="section-header">
-        <div class="section-title">📱 Pantallas Mobile — Nuevo diseño</div>
-      </div>
-      <div class="mobile-screens-row">
-        <a href="mobile-splash.html" class="mobile-screen-card" target="_blank">
-          <div class="mobile-screen-card-icon">🎯</div>
-          <div class="mobile-screen-card-title">Splash</div>
-          <div class="mobile-screen-card-desc">Logo nuevo · Fondo blanco</div>
-          <span class="mobile-screen-badge">Nuevo PDF</span>
-        </a>
-        <a href="mobile-bienvenida.html" class="mobile-screen-card" target="_blank">
-          <div class="mobile-screen-card-icon">🟣</div>
-          <div class="mobile-screen-card-title">Bienvenida</div>
-          <div class="mobile-screen-card-desc">Botones circulares · Iniciar / Crear</div>
-          <span class="mobile-screen-badge">Nuevo PDF</span>
-        </a>
-        <a href="mobile-home.html" class="mobile-screen-card" target="_blank">
-          <div class="mobile-screen-card-icon">🏠</div>
-          <div class="mobile-screen-card-title">Home Mobile</div>
-          <div class="mobile-screen-card-desc">Fondo lima · Subastas · Intercambios · Destacados</div>
-          <span class="mobile-screen-badge">Nuevo PDF</span>
-        </a>
-      </div>
-    </div>
 
     <div style="margin-top:28px">
       <div class="section-header">
