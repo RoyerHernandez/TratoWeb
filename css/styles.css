@@ -1821,3 +1821,120 @@ body.theme-transitioning *::after {
   background: var(--teal-light); color: var(--teal-dark);
   margin-top: 2px;
 }
+
+/* ── Hub Home — nuevo diseño PDF ── */
+.hub-home {
+  background: var(--bg);
+  min-height: calc(100vh - var(--topbar-h));
+  margin: -24px;
+  padding: 24px;
+  padding-bottom: 48px;
+}
+.hub-home-hero {
+  background: var(--bg-lavender);
+  border-radius: 20px;
+  padding: 24px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  min-height: 120px;
+  overflow: hidden;
+}
+.hub-home-hero-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--purple);
+  line-height: 1.3;
+  max-width: 55%;
+}
+.hub-home-hero-img {
+  width: 140px;
+  height: 110px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+.hub-home-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.hub-home-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow-sm);
+}
+.hub-home-card:hover {
+  transform: scale(1.01);
+  box-shadow: var(--shadow);
+}
+.hub-home-card-title {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--purple);
+  letter-spacing: -0.5px;
+}
+.hub-home-card-icon {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+}
+.hub-home-cta {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  min-height: 140px;
+  background: #bbb url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=60') center/cover no-repeat;
+  cursor: pointer;
+  margin-bottom: 28px;
+}
+.hub-home-cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.58);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 20px;
+}
+.hub-home-cta-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--purple);
+  text-align: center;
+  line-height: 1.3;
+}
+.hub-home-cta-btn {
+  background: var(--purple);
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 12px 36px;
+  font-size: 16px;
+  font-weight: 800;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.hub-home-cta-btn:hover { background: var(--purple-dark); }
+.hub-home-section-title {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--purple);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 700px) {
+  .hub-home-cards { flex-direction: row; }
+  .hub-home-card { flex: 1; }
+}

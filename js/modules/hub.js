@@ -1,95 +1,58 @@
 function initHub() {
   const D = window.TRATO_DATA;
   const hot = D.auctions.filter(a => a.badge === 'ending' || a.badge === 'hot').slice(0, 4);
-  const exchangeCount = (window.EXCHANGES || []).length || 5;
 
   document.getElementById('app-content').innerHTML = `
-    <div class="hub-greeting">
-      <h1>¡Hola, ${D.user.name.split(' ')[0]}! 👋</h1>
-      <p>Aquí está lo que está pasando en Trato hoy.</p>
-    </div>
+    <div class="hub-home">
 
-    <div class="kpi-row">
-      <div class="kpi purple">
-        <div class="kpi-label">Subastas activas</div>
-        <div class="kpi-value">${D.auctions.length}</div>
-        <div class="kpi-sub">+3 desde ayer</div>
+      <!-- Hero -->
+      <div class="hub-home-hero">
+        <div class="hub-home-hero-text">Tu lo tienes<br>alguien lo<br>necesita</div>
+        <img class="hub-home-hero-img"
+             src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=300&q=70"
+             alt="Reloj"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:130px;height:100px;align-items:center;justify-content:center;font-size:52px">⌚</div>
       </div>
-      <div class="kpi">
-        <div class="kpi-label">Mis pujas</div>
-        <div class="kpi-value">${D.user.bids}</div>
-        <div class="kpi-sub">en ${D.user.bids} artículos</div>
-      </div>
-      <div class="kpi green">
-        <div class="kpi-label">Victorias</div>
-        <div class="kpi-value">${D.user.sales}</div>
-        <div class="kpi-sub">total histórico</div>
-      </div>
-      <div class="kpi teal">
-        <div class="kpi-label">Intercambios</div>
-        <div class="kpi-value">${exchangeCount}</div>
-        <div class="kpi-sub">activos ahora</div>
-      </div>
-    </div>
 
-    <div class="hub-circles">
-      <div class="hub-circle auctions" onclick="window.open('mobile-home.html','_blank')">
-        <div class="hub-circle-icon">🏷️</div>
-        <div class="hub-circle-label">Subastas</div>
-        <div class="hub-circle-sub">${D.auctions.length} activas ahora</div>
+      <!-- Cards principales -->
+      <div class="hub-home-cards">
+        <div class="hub-home-card" onclick="navigate('auctions')">
+          <span class="hub-home-card-title">Subastas</span>
+          <svg class="hub-home-card-icon" viewBox="0 0 72 72" fill="none">
+            <rect x="38" y="44" width="10" height="26" rx="3" transform="rotate(-45 38 44)" fill="#8DC63F"/>
+            <rect x="12" y="10" width="32" height="20" rx="5" transform="rotate(-45 12 10)" fill="#8DC63F"/>
+            <rect x="18" y="58" width="36" height="8" rx="4" fill="#8DC63F"/>
+          </svg>
+        </div>
+        <div class="hub-home-card" onclick="navigate('exchanges')">
+          <span class="hub-home-card-title">Intercambios</span>
+          <svg class="hub-home-card-icon" viewBox="0 0 72 72" fill="none">
+            <path d="M18 36 A18 18 0 0 1 54 36" stroke="#8DC63F" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <polygon points="54,36 46,28 62,28" fill="#8DC63F"/>
+            <path d="M54 36 A18 18 0 0 1 18 36" stroke="#8DC63F" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <polygon points="18,36 26,44 10,44" fill="#8DC63F"/>
+          </svg>
+        </div>
       </div>
-      <div class="hub-circle exchanges" onclick="window.open('mobile-home.html','_blank')">
-        <div class="hub-circle-icon">🔄</div>
-        <div class="hub-circle-label">Intercambios</div>
-        <div class="hub-circle-sub">${exchangeCount} disponibles</div>
-      </div>
-    </div>
 
-    <div class="hub-seller-cta" onclick="navigate('onboarding')">
-      <div class="hub-seller-cta-icon">🏪</div>
-      <div class="hub-seller-cta-content">
-        <div class="hub-seller-cta-title">¿Tienes algo para vender?</div>
-        <div class="hub-seller-cta-sub">Crea tu tienda verificada y llega a compradores que confían en Trato</div>
+      <!-- CTA -->
+      <div class="hub-home-cta" onclick="navigate('create')">
+        <div class="hub-home-cta-overlay">
+          <div class="hub-home-cta-text">Tienes algo para<br>subastar o vender</div>
+          <button class="hub-home-cta-btn" onclick="event.stopPropagation();navigate('create')">Crear publicación</button>
+        </div>
       </div>
-      <button class="btn btn-primary" onclick="event.stopPropagation();navigate('onboarding')">
-        <span class="material-symbols-rounded">storefront</span>
-        Crear mi perfil
-      </button>
-    </div>
 
-    <div class="section-header">
-      <div>
-        <div class="section-title">Subastas destacadas <span class="live-dot" style="margin-left:10px">EN VIVO</span></div>
+      <!-- Destacados -->
+      <div class="hub-home-section-title">
+        Destacados <span class="live-dot" style="margin-left:10px">EN VIVO</span>
       </div>
-      <div class="section-link" onclick="navigate('auctions')">Ver todas →</div>
-    </div>
-    <div class="auction-grid" id="hub-grid"></div>
+      <div class="auction-grid" id="hub-grid"></div>
 
-    <div style="margin-top:28px">
-      <div class="section-header">
-        <div class="section-title">Actividad reciente</div>
-      </div>
-      <div class="card">
-        ${[
-          { icon: '💎', color: 'rgba(139,47,201,0.1)', title: 'Superaron tu puja en "Esmeralda 2.3ct"', time: 'hace 3 minutos', amount: null, page: 1 },
-          { icon: '🏆', color: 'rgba(39,174,96,0.1)', title: 'Ganaste "Esmeralda Natural 2.3ct"', time: 'hace 2 horas', amount: D.fmt(1250000), page: 'won' },
-          { icon: '🏷️', color: 'rgba(60,188,184,0.1)', title: 'Puja realizada en "Reloj Seiko SPB143"', time: 'hace 5 horas', amount: D.fmt(1700000), page: 2 },
-          { icon: '👁️', color: 'rgba(255,107,53,0.1)', title: 'Alguien está mirando tu publicación', time: 'hace 1 día', amount: null, page: null },
-        ].map(a => `
-          <div class="activity-item" onclick="${a.page ? `navigate('${isNaN(a.page) ? a.page : 'detail'}', ${isNaN(a.page) ? '' : a.page})` : ''}">
-            <div class="activity-icon" style="background:${a.color}">${a.icon}</div>
-            <div class="activity-text">
-              <div class="activity-title">${a.title}</div>
-              <div class="activity-time">${a.time}</div>
-            </div>
-            ${a.amount ? `<div class="activity-amount" style="color:var(--purple)">${a.amount}</div>` : ''}
-          </div>
-        `).join('')}
-      </div>
     </div>
   `;
 
-  // Render hot auctions
   const grid = document.getElementById('hub-grid');
   if (grid) {
     grid.innerHTML = hot.map(a => renderAuctionCard(a)).join('');
