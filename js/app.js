@@ -239,9 +239,5 @@ document.addEventListener('DOMContentLoaded', () => {
   _initSearch();
   _initModal();
   _initKeyboard();
-  if (!sessionStorage.getItem('trato_auth')) {
-    window.location.href = 'mobile-bienvenida.html';
-    return;
-  }
   navigate('hub');
 });
