@@ -1,151 +1,244 @@
 function initHub() {
   const D = window.TRATO_DATA;
-  const hot = D.auctions.filter(a => a.badge === 'ending' || a.badge === 'hot').slice(0, 4);
-  const exchangeCount = (window.EXCHANGES || []).length || 5;
+  const auctions = D.auctions;
+  const featured = auctions.find(a => a.totalBids > 5) || auctions[0];
+  const endingSoon = auctions
+    .filter(a => a.id !== featured?.id)
+    .sort((a, b) => a.endsAt - b.endsAt)
+    .slice(0, 4);
+
+  const fcd = featured ? D.countdown(featured.endsAt) : null;
 
   document.getElementById('app-content').innerHTML = `
+    <!-- Greeting -->
     <div class="hub-greeting">
-      <h1>¡Hola, ${D.user.name.split(' ')[0]}! 👋</h1>
-      <p>Aquí está lo que está pasando en Trato hoy.</p>
-    </div>
-
-    <div class="kpi-row">
-      <div class="kpi purple">
-        <div class="kpi-label">Subastas activas</div>
-        <div class="kpi-value">${D.auctions.length}</div>
-        <div class="kpi-sub">+3 desde ayer</div>
+      <div>
+        <h1>Hola, Royer</h1>
+        <p class="hub-greeting-sub">Tienes <strong>3 pujas activas</strong> · <strong>1 vas ganando</strong></p>
       </div>
-      <div class="kpi">
-        <div class="kpi-label">Mis pujas</div>
-        <div class="kpi-value">${D.user.bids}</div>
-        <div class="kpi-sub">en ${D.user.bids} artículos</div>
-      </div>
-      <div class="kpi green">
-        <div class="kpi-label">Victorias</div>
-        <div class="kpi-value">${D.user.sales}</div>
-        <div class="kpi-sub">total histórico</div>
-      </div>
-      <div class="kpi teal">
-        <div class="kpi-label">Intercambios</div>
-        <div class="kpi-value">${exchangeCount}</div>
-        <div class="kpi-sub">activos ahora</div>
-      </div>
-    </div>
-
-    <div class="hub-circles">
-      <div class="hub-circle auctions" onclick="navigate('auctions')">
-        <div class="hub-circle-icon">🏷️</div>
-        <div class="hub-circle-label">Subastas</div>
-        <div class="hub-circle-sub">${D.auctions.length} activas ahora</div>
-      </div>
-      <div class="hub-circle exchanges" onclick="navigate('exchanges')">
-        <div class="hub-circle-icon">🔄</div>
-        <div class="hub-circle-label">Intercambios</div>
-        <div class="hub-circle-sub">${exchangeCount} disponibles</div>
-      </div>
-    </div>
-
-    <div class="hub-seller-cta" onclick="navigate('onboarding')">
-      <div class="hub-seller-cta-icon">🏪</div>
-      <div class="hub-seller-cta-content">
-        <div class="hub-seller-cta-title">¿Tienes algo para vender?</div>
-        <div class="hub-seller-cta-sub">Crea tu tienda verificada y llega a compradores que confían en Trato</div>
-      </div>
-      <button class="btn btn-primary" onclick="event.stopPropagation();navigate('onboarding')">
-        <span class="material-symbols-rounded">storefront</span>
-        Crear mi perfil
+      <button class="btn btn-primary btn-sm" onclick="navigate('create')">
+        <span class="material-symbols-rounded">add</span>
+        Nueva subasta
       </button>
     </div>
 
-    <div class="section-header">
-      <div>
-        <div class="section-title">Subastas destacadas <span class="live-dot" style="margin-left:10px">EN VIVO</span></div>
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon--purple"><span class="material-symbols-rounded">gavel</span></div>
+        <div><div class="kpi-value">3</div><div class="kpi-label">Pujas activas</div></div>
       </div>
-      <div class="section-link" onclick="navigate('auctions')">Ver todas →</div>
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon--teal"><span class="material-symbols-rounded">emoji_events</span></div>
+        <div><div class="kpi-value">1</div><div class="kpi-label">Vas ganando</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon--purple"><span class="material-symbols-rounded">storefront</span></div>
+        <div><div class="kpi-value">2</div><div class="kpi-label">En venta</div></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-icon--teal"><span class="material-symbols-rounded">swap_horiz</span></div>
+        <div><div class="kpi-value">4</div><div class="kpi-label">Intercambios</div></div>
+      </div>
     </div>
-    <div class="auction-grid" id="hub-grid"></div>
 
-    <div style="margin-top:28px">
+    ${featured ? `
+    <!-- Featured auction -->
+    <section class="hub-featured-section">
       <div class="section-header">
-        <div class="section-title">Actividad reciente</div>
+        <h2 class="section-title">Destacada ahora</h2>
+        <span class="live-badge"><span class="live-dot"></span>En vivo</span>
       </div>
-      <div class="card">
-        ${[
-          { icon: '💎', color: 'rgba(139,47,201,0.1)', title: 'Superaron tu puja en "Esmeralda 2.3ct"', time: 'hace 3 minutos', amount: null, page: 1 },
-          { icon: '🏆', color: 'rgba(39,174,96,0.1)', title: 'Ganaste "Esmeralda Natural 2.3ct"', time: 'hace 2 horas', amount: D.fmt(1250000), page: 'won' },
-          { icon: '🏷️', color: 'rgba(60,188,184,0.1)', title: 'Puja realizada en "Reloj Seiko SPB143"', time: 'hace 5 horas', amount: D.fmt(1700000), page: 2 },
-          { icon: '👁️', color: 'rgba(255,107,53,0.1)', title: 'Alguien está mirando tu publicación', time: 'hace 1 día', amount: null, page: null },
-        ].map(a => `
-          <div class="activity-item" onclick="${a.page ? `navigate('${isNaN(a.page) ? a.page : 'detail'}', ${isNaN(a.page) ? '' : a.page})` : ''}">
-            <div class="activity-icon" style="background:${a.color}">${a.icon}</div>
-            <div class="activity-text">
-              <div class="activity-title">${a.title}</div>
-              <div class="activity-time">${a.time}</div>
-            </div>
-            ${a.amount ? `<div class="activity-amount" style="color:var(--purple)">${a.amount}</div>` : ''}
+      <div class="featured-card" onclick="navigate('detail', '${featured.id}')">
+        <div class="featured-img">
+          <div class="featured-img-bg">
+            <span style="font-size:80px">${featured.emoji || '💎'}</span>
           </div>
-        `).join('')}
+          <div class="featured-badges">
+            <span class="featured-fire-badge">
+              <span class="material-symbols-rounded" style="font-size:13px">local_fire_department</span>
+              ${featured.totalBids} pujas
+            </span>
+            ${featured.seller.verified ? `<span class="featured-verified-badge"><span class="material-symbols-rounded" style="font-size:12px">verified</span> Verificado</span>` : ''}
+          </div>
+        </div>
+        <div class="featured-body">
+          <div class="featured-category">${featured.categoryLabel || 'General'}</div>
+          <h3 class="featured-title">${featured.title}</h3>
+          <div class="featured-seller">
+            <div class="avatar-xs">${featured.seller.initials[0]}</div>
+            <span>${featured.seller.name}</span>
+            ${featured.seller.verified ? `<span class="material-symbols-rounded" style="font-size:14px;color:var(--purple)">verified</span>` : ''}
+          </div>
+          <div class="featured-footer">
+            <div>
+              <div class="featured-price-label">Puja actual</div>
+              <div class="featured-price">${D.fmt(featured.currentPrice)}</div>
+            </div>
+            <div class="featured-timer ${fcd.state}" data-ends="${featured.endsAt}">
+              <span class="material-symbols-rounded" style="font-size:14px">timer</span>
+              <span class="timer-val">${fcd.str}</span>
+            </div>
+          </div>
+          <div class="featured-bottom">
+            <button class="btn btn-primary" onclick="navigate('detail', '${featured.id}'); event.stopPropagation()">
+              <span class="material-symbols-rounded">gavel</span>
+              Hacer puja
+            </button>
+            <div class="featured-pagas">
+              <span class="material-symbols-rounded" style="font-size:14px">shield</span>
+              Pagas solo si ganas
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+    ` : ''}
+
+    <!-- Ending soon -->
+    <section class="hub-ending-section">
+      <div class="section-header">
+        <h2 class="section-title">Terminan pronto</h2>
+        <a class="see-all-link" onclick="navigate('auctions'); return false" href="#">Ver todas <span class="material-symbols-rounded" style="font-size:16px;vertical-align:-4px">chevron_right</span></a>
+      </div>
+      <div class="auctions-grid">
+        ${endingSoon.map(a => renderAuctionCard(a)).join('')}
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="hub-how-section">
+      <h2 class="section-title" style="text-align:center">¿Cómo funciona?</h2>
+      <p class="hub-how-sub">Compra y vende de forma segura en 4 pasos</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-icon how-step-icon--1"><span class="material-symbols-rounded">person_add</span></div>
+          <div class="how-step-num">PASO 1</div>
+          <h3 class="how-step-title">Regístrate</h3>
+          <p class="how-step-desc">Crea tu cuenta y verifica tu identidad en minutos</p>
+        </div>
+        <div class="how-step-arrow"><span class="material-symbols-rounded">arrow_forward</span></div>
+        <div class="how-step">
+          <div class="how-step-icon how-step-icon--2"><span class="material-symbols-rounded">search</span></div>
+          <div class="how-step-num">PASO 2</div>
+          <h3 class="how-step-title">Busca</h3>
+          <p class="how-step-desc">Explora subastas de joyería, electrónica y más</p>
+        </div>
+        <div class="how-step-arrow"><span class="material-symbols-rounded">arrow_forward</span></div>
+        <div class="how-step">
+          <div class="how-step-icon how-step-icon--3"><span class="material-symbols-rounded">gavel</span></div>
+          <div class="how-step-num">PASO 3</div>
+          <h3 class="how-step-title">Puja</h3>
+          <p class="how-step-desc">Haz tu oferta o activa la puja automática</p>
+        </div>
+        <div class="how-step-arrow"><span class="material-symbols-rounded">arrow_forward</span></div>
+        <div class="how-step">
+          <div class="how-step-icon how-step-icon--4"><span class="material-symbols-rounded">emoji_events</span></div>
+          <div class="how-step-num">PASO 4</div>
+          <h3 class="how-step-title">Gana</h3>
+          <p class="how-step-desc">Paga solo si ganas — escrow seguro garantizado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seller CTA -->
+    <section class="hub-seller-cta">
+      <div class="seller-cta-inner">
+        <div class="seller-cta-icon"><span class="material-symbols-rounded">storefront</span></div>
+        <div class="seller-cta-text">
+          <h2>¿Tienes algo que vender?</h2>
+          <p>Publica tu subasta en minutos y llega a miles de compradores verificados en Colombia</p>
+        </div>
+        <button class="btn btn-lg" style="background:white;color:var(--purple);font-weight:800" onclick="navigate('create')">
+          <span class="material-symbols-rounded">add_circle</span>
+          Crear subasta gratis
+        </button>
+      </div>
+    </section>
+
+    <!-- App waitlist -->
+    <section class="hub-waitlist">
+      <div class="waitlist-inner">
+        <div class="waitlist-emoji">📱</div>
+        <div class="waitlist-content">
+          <div class="waitlist-tag">Próximamente</div>
+          <h2 class="waitlist-title">App Trato para móvil</h2>
+          <p class="waitlist-desc">Recibe notificaciones en tiempo real cuando te superen en una puja. Sé el primero en saberlo.</p>
+          <div class="waitlist-form">
+            <input type="email" class="form-input waitlist-input" id="waitlistEmail" placeholder="tu@email.com">
+            <button class="btn btn-primary" onclick="_joinWaitlist()">
+              <span class="material-symbols-rounded">notifications</span>
+              Avisarme
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
   `;
 
-  // Render hot auctions
-  const grid = document.getElementById('hub-grid');
-  if (grid) {
-    grid.innerHTML = hot.map(a => renderAuctionCard(a)).join('');
-    startCardTimers();
+  startCardTimers();
+}
+
+function _joinWaitlist() {
+  const email = document.getElementById('waitlistEmail')?.value?.trim();
+  if (!email || !email.includes('@')) {
+    showToast('Ingresa un email válido', 'error');
+    return;
   }
+  showToast('¡Listo! Te avisaremos cuando lancemos la app', 'success');
+  const input = document.getElementById('waitlistEmail');
+  if (input) input.value = '';
 }
 
 function renderAuctionCard(a) {
   const D = window.TRATO_DATA;
   const cd = D.countdown(a.endsAt);
-  const timerClass = cd.state === 'urgent' ? 'urgent' : cd.state === 'soon' ? 'soon' : '';
-  const badge = a.badge
-    ? `<div class="pcard-live badge-${a.badge === 'hot' ? 'hot' : a.badge === 'new' ? 'new' : 'ending'}">${a.badgeLabel}</div>`
-    : '';
-  const sp = D.sellers && D.sellers.find(s => s.name === a.seller.name);
-  const sellerHtml = sp
-    ? `<a class="pcard-seller-link" onclick="event.stopPropagation();navigate('seller','${sp.id}')">${a.seller.name}</a>`
-    : `<div class="pcard-seller">${a.seller.name}</div>`;
-
   return `
-    <div class="pcard" onclick="navigate('detail', ${a.id})">
-      <div class="pcard-img" style="background:${a.gradient}">
-        <img src="${a.imgUrl}" alt="${a.title}" loading="lazy"
-          onerror="this.style.display='none';this.parentElement.innerHTML+='<span style=\\"font-size:56px\\">${a.emoji}</span>'">
-        ${badge}
-        <div class="pcard-timer ${timerClass}" data-ends="${a.endsAt}" data-timer>
-          <span class="material-symbols-rounded" style="font-size:12px">timer</span>
-          <span>${cd.str}</span>
-        </div>
+    <div class="auction-card" onclick="navigate('detail', '${a.id}')">
+      <div class="auction-img">
+        <div class="auction-img-bg">${a.emoji || '📦'}</div>
+        ${a.seller.verified ? `<span class="auction-verified-badge"><span class="material-symbols-rounded" style="font-size:12px">verified</span></span>` : ''}
       </div>
-      <div class="pcard-body">
-        <div class="pcard-cat">${a.categoryLabel}</div>
-        <div class="pcard-title">${a.title}</div>
-        ${sellerHtml}
-        <div class="pcard-footer">
+      <div class="auction-body">
+        <div class="auction-category">${a.categoryLabel || 'General'}</div>
+        <div class="auction-title">${a.title}</div>
+        <div class="auction-footer">
           <div>
-            <div class="pcard-price-lbl">Puja actual</div>
-            <div class="pcard-price">${D.fmt(a.currentPrice)}</div>
+            <div class="auction-price-label">${a.totalBids > 0 ? 'Puja actual' : 'Precio inicial'}</div>
+            <div class="auction-price">${D.fmt(a.currentPrice)}</div>
           </div>
-          <button class="pcard-btn" onclick="event.stopPropagation();navigate('detail',${a.id})">${a.totalBids} pujas</button>
+          <div class="auction-timer ${cd.state}" data-ends="${a.endsAt}">
+            <span class="material-symbols-rounded" style="font-size:13px">timer</span>
+            <span class="timer-val">${cd.str}</span>
+          </div>
+        </div>
+        <div class="auction-meta">
+          <div class="auction-meta-item">
+            <span class="material-symbols-rounded" style="font-size:14px">gavel</span>
+            ${a.totalBids} ${a.totalBids === 1 ? 'puja' : 'pujas'}
+          </div>
+          <div class="auction-meta-item">
+            <span class="material-symbols-rounded" style="font-size:14px">location_on</span>
+            ${a.location || 'Colombia'}
+          </div>
         </div>
       </div>
-    </div>`;
+    </div>
+  `;
 }
 
 function startCardTimers() {
-  const D = window.TRATO_DATA;
-  setInterval(() => {
-    document.querySelectorAll('.pcard-timer[data-timer]').forEach(el => {
+  if (window._hubTimerInterval) clearInterval(window._hubTimerInterval);
+  window._hubTimerInterval = setInterval(() => {
+    const D = window.TRATO_DATA;
+    document.querySelectorAll('[data-ends]').forEach(el => {
       const endsAt = +el.dataset.ends;
       const cd = D.countdown(endsAt);
-      const span = el.querySelector('span:last-child');
-      if (span) span.textContent = cd.str;
-      el.className = `pcard-timer ${cd.state === 'urgent' ? 'urgent' : cd.state === 'soon' ? 'soon' : ''}`;
+      const val = el.querySelector('.timer-val');
+      if (val) val.textContent = cd.str;
+      const isFeatured = el.classList.contains('featured-timer');
+      el.className = `${isFeatured ? 'featured-timer' : 'auction-timer'} ${cd.state}`;
       el.dataset.ends = endsAt;
-      el.dataset.timer = '';
     });
   }, 1000);
 }
