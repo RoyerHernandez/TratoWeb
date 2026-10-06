@@ -54,6 +54,7 @@ function navigate(page, id) {
     case 'won':             initWon();              break;
     case 'seller':          initSeller(id);         break;
     case 'dashboard':       initDashboard();        break;
+    case 'scheduled':       initScheduled();        break;
     case 'onboarding':      initOnboarding();       break;
     default:                initHub();
   }
