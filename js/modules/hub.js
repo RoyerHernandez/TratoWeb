@@ -1,102 +1,102 @@
+// Hero categories for carousel
+const HUB_HERO_SLIDES = [
+  {
+    tag: 'Nuevos lotes',
+    title: 'Joyería y\nesmeraldas',
+    desc: 'Esmeraldas colombianas, oro 18K y piezas únicas de los mejores joyeros del país.',
+    cta: 'Ver subastas',
+    emoji: '💎',
+    bg: 'var(--teal-soft)',
+    cat: 'joyeria',
+  },
+  {
+    tag: 'Populares',
+    title: 'Relojes y\ncoleccionables',
+    desc: 'Seikos, Casios vintage y relojes premium a subasta. Encuentra tu próximo tesoro.',
+    cta: 'Explorar',
+    emoji: '⌚',
+    bg: 'var(--purple-light)',
+    cat: 'relojes',
+  },
+  {
+    tag: 'Terminan pronto',
+    title: 'Tecnología\npremium',
+    desc: 'MacBooks, iPhones y gadgets de alta gama verificados. Precio real de mercado.',
+    cta: 'Ver lotes',
+    emoji: '💻',
+    bg: '#F0FDF4',
+    cat: 'tecnologia',
+  },
+];
+
+let _heroSlide = 0;
+let _heroInterval = null;
+
 function initHub() {
   const D = window.TRATO_DATA;
-  const auctions = D.auctions;
-  const featured = auctions.find(a => a.totalBids > 5) || auctions[0];
-  const endingSoon = auctions
-    .filter(a => a.id !== featured?.id)
-    .sort((a, b) => a.endsAt - b.endsAt)
-    .slice(0, 4);
 
-  const fcd = featured ? D.countdown(featured.endsAt) : null;
+  if (_heroInterval) { clearInterval(_heroInterval); _heroInterval = null; }
+  if (window._hubTimerInterval) { clearInterval(window._hubTimerInterval); window._hubTimerInterval = null; }
+
+  const liveAuctions = D.auctions.filter(a => a.badge === 'ending' || a.badge === 'hot');
+  const featured = D.auctions.find(a => a.totalBids >= 8) || D.auctions[0];
+  const endingSoon = D.auctions.sort((a, b) => a.endsAt - b.endsAt).slice(0, 4);
 
   document.getElementById('app-content').innerHTML = `
-    <!-- Greeting -->
-    <div class="hub-greeting">
-      <div>
-        <h1>Hola, Royer</h1>
-        <p class="hub-greeting-sub">Tienes <strong>3 pujas activas</strong> · <strong>1 vas ganando</strong></p>
-      </div>
-      <button class="btn btn-primary btn-sm" onclick="navigate('create')">
-        <span class="material-symbols-rounded">add</span>
-        Nueva subasta
-      </button>
+    <!-- Hero Carousel -->
+    <div class="hub-hero" id="hubHero">
+      ${_renderHeroSlide(HUB_HERO_SLIDES[_heroSlide])}
     </div>
 
-    <!-- KPIs -->
-    <div class="kpi-row">
-      <div class="kpi-card">
-        <div class="kpi-icon kpi-icon--purple"><span class="material-symbols-rounded">gavel</span></div>
-        <div><div class="kpi-value">3</div><div class="kpi-label">Pujas activas</div></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon kpi-icon--teal"><span class="material-symbols-rounded">emoji_events</span></div>
-        <div><div class="kpi-value">1</div><div class="kpi-label">Vas ganando</div></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon kpi-icon--purple"><span class="material-symbols-rounded">storefront</span></div>
-        <div><div class="kpi-value">2</div><div class="kpi-label">En venta</div></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-icon kpi-icon--teal"><span class="material-symbols-rounded">swap_horiz</span></div>
-        <div><div class="kpi-value">4</div><div class="kpi-label">Intercambios</div></div>
-      </div>
-    </div>
-
-    ${featured ? `
-    <!-- Featured auction -->
-    <section class="hub-featured-section">
+    <!-- Live section -->
+    <div class="hub-live-section">
       <div class="section-header">
-        <h2 class="section-title">Destacada ahora</h2>
-        <span class="live-badge"><span class="live-dot"></span>En vivo</span>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="live-badge"><span class="live-dot"></span>Subastas en vivo</span>
+          <h2 class="section-title" style="margin:0">Puja en tiempo real</h2>
+        </div>
+        <a class="see-all-link" onclick="navigate('auctions'); return false" href="#">Ver todas <span class="material-symbols-rounded" style="font-size:16px;vertical-align:-4px">chevron_right</span></a>
       </div>
-      <div class="featured-card" onclick="navigate('detail', '${featured.id}')">
-        <div class="featured-img">
-          <div class="featured-img-bg">
-            <span style="font-size:80px">${featured.emoji || '💎'}</span>
+
+      <!-- Featured -->
+      ${featured ? `
+      <div class="hub-featured-card" onclick="navigate('detail', '${featured.id}')">
+        <div class="hub-featured-left">
+          <div class="hub-featured-img">
+            <span>${featured.emoji || '📦'}</span>
           </div>
-          <div class="featured-badges">
-            <span class="featured-fire-badge">
-              <span class="material-symbols-rounded" style="font-size:13px">local_fire_department</span>
-              ${featured.totalBids} pujas
-            </span>
+          <div class="hub-featured-badge-row">
+            <span class="featured-fire-badge"><span class="material-symbols-rounded" style="font-size:12px">local_fire_department</span>${featured.totalBids} pujas</span>
             ${featured.seller.verified ? `<span class="featured-verified-badge"><span class="material-symbols-rounded" style="font-size:12px">verified</span> Verificado</span>` : ''}
           </div>
         </div>
-        <div class="featured-body">
-          <div class="featured-category">${featured.categoryLabel || 'General'}</div>
-          <h3 class="featured-title">${featured.title}</h3>
-          <div class="featured-seller">
-            <div class="avatar-xs">${featured.seller.initials[0]}</div>
-            <span>${featured.seller.name}</span>
-            ${featured.seller.verified ? `<span class="material-symbols-rounded" style="font-size:14px;color:var(--purple)">verified</span>` : ''}
-          </div>
-          <div class="featured-footer">
+        <div class="hub-featured-right">
+          <div class="hub-featured-tag">Destacado</div>
+          <h3 class="hub-featured-title">${featured.title}</h3>
+          <div class="hub-featured-seller">${featured.seller.name}</div>
+          <div class="hub-featured-price-row">
             <div>
-              <div class="featured-price-label">Puja actual</div>
-              <div class="featured-price">${D.fmt(featured.currentPrice)}</div>
+              <div style="font-size:11px;color:var(--text-tertiary)">Puja actual</div>
+              <div class="hub-featured-price">${D.fmt(featured.currentPrice)}</div>
             </div>
-            <div class="featured-timer ${fcd.state}" data-ends="${featured.endsAt}">
+            <div class="hub-featured-timer ${D.countdown(featured.endsAt).state}" data-ends="${featured.endsAt}">
               <span class="material-symbols-rounded" style="font-size:14px">timer</span>
-              <span class="timer-val">${fcd.str}</span>
+              <span class="timer-val">${D.countdown(featured.endsAt).str}</span>
             </div>
           </div>
-          <div class="featured-bottom">
+          <div class="hub-featured-cta-row">
             <button class="btn btn-primary" onclick="navigate('detail', '${featured.id}'); event.stopPropagation()">
-              <span class="material-symbols-rounded">gavel</span>
-              Hacer puja
+              <span class="material-symbols-rounded">gavel</span>Hacer puja
             </button>
-            <div class="featured-pagas">
-              <span class="material-symbols-rounded" style="font-size:14px">shield</span>
-              Pagas solo si ganas
-            </div>
+            <span class="hub-pagas-solo"><span class="material-symbols-rounded" style="font-size:13px">shield</span>Pagas solo si ganas</span>
           </div>
         </div>
       </div>
-    </section>
-    ` : ''}
+      ` : ''}
+    </div>
 
-    <!-- Ending soon -->
-    <section class="hub-ending-section">
+    <!-- Terminan pronto -->
+    <div class="hub-ending-section">
       <div class="section-header">
         <h2 class="section-title">Terminan pronto</h2>
         <a class="see-all-link" onclick="navigate('auctions'); return false" href="#">Ver todas <span class="material-symbols-rounded" style="font-size:16px;vertical-align:-4px">chevron_right</span></a>
@@ -104,10 +104,10 @@ function initHub() {
       <div class="auctions-grid">
         ${endingSoon.map(a => renderAuctionCard(a)).join('')}
       </div>
-    </section>
+    </div>
 
     <!-- How it works -->
-    <section class="hub-how-section">
+    <div class="hub-how-section">
       <h2 class="section-title" style="text-align:center">¿Cómo funciona?</h2>
       <p class="hub-how-sub">Compra y vende de forma segura en 4 pasos</p>
       <div class="how-steps">
@@ -139,31 +139,31 @@ function initHub() {
           <p class="how-step-desc">Paga solo si ganas — escrow seguro garantizado</p>
         </div>
       </div>
-    </section>
+    </div>
 
     <!-- Seller CTA -->
-    <section class="hub-seller-cta">
+    <div class="hub-seller-cta">
       <div class="seller-cta-inner">
         <div class="seller-cta-icon"><span class="material-symbols-rounded">storefront</span></div>
         <div class="seller-cta-text">
           <h2>¿Tienes algo que vender?</h2>
           <p>Publica tu subasta en minutos y llega a miles de compradores verificados en Colombia</p>
         </div>
-        <button class="btn btn-lg" style="background:white;color:var(--purple);font-weight:800" onclick="navigate('create')">
+        <button class="btn btn-lg" style="background:white;color:var(--purple);font-weight:800;flex-shrink:0" onclick="navigate('create')">
           <span class="material-symbols-rounded">add_circle</span>
           Crear subasta gratis
         </button>
       </div>
-    </section>
+    </div>
 
     <!-- App waitlist -->
-    <section class="hub-waitlist">
+    <div class="hub-waitlist">
       <div class="waitlist-inner">
         <div class="waitlist-emoji">📱</div>
         <div class="waitlist-content">
           <div class="waitlist-tag">Próximamente</div>
           <h2 class="waitlist-title">App Trato para móvil</h2>
-          <p class="waitlist-desc">Recibe notificaciones en tiempo real cuando te superen en una puja. Sé el primero en saberlo.</p>
+          <p class="waitlist-desc">Recibe notificaciones en tiempo real cuando te superen en una puja.</p>
           <div class="waitlist-form">
             <input type="email" class="form-input waitlist-input" id="waitlistEmail" placeholder="tu@email.com">
             <button class="btn btn-primary" onclick="_joinWaitlist()">
@@ -173,10 +173,84 @@ function initHub() {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   `;
 
+  _startHeroCarousel();
   startCardTimers();
+}
+
+function _renderHeroSlide(slide) {
+  const total = HUB_HERO_SLIDES.length;
+  return `
+    <div class="hub-hero-inner" style="background:${slide.bg}">
+      <div class="hub-hero-content">
+        <span class="hub-hero-tag">${slide.tag}</span>
+        <h2 class="hub-hero-title">${slide.title.replace('\n','<br>')}</h2>
+        <p class="hub-hero-desc">${slide.desc}</p>
+        <button class="btn btn-primary" onclick="navigate('auctions')">
+          ${slide.cta}
+          <span class="material-symbols-rounded">arrow_forward</span>
+        </button>
+      </div>
+      <div class="hub-hero-visual">
+        <div class="hub-hero-circle-bg"></div>
+        <div class="hub-hero-emoji">${slide.emoji}</div>
+      </div>
+    </div>
+    <div class="hub-hero-nav">
+      <button class="hub-hero-nav-btn" onclick="_prevSlide()" aria-label="Anterior">
+        <span class="material-symbols-rounded">chevron_left</span>
+      </button>
+      <div class="hub-hero-dots">
+        ${HUB_HERO_SLIDES.map((_, i) => `
+          <button class="hub-hero-dot ${i === _heroSlide ? 'active' : ''}"
+            onclick="_goToSlide(${i})" aria-label="Ir a slide ${i+1}"></button>
+        `).join('')}
+      </div>
+      <button class="hub-hero-nav-btn" onclick="_nextSlide()" aria-label="Siguiente">
+        <span class="material-symbols-rounded">chevron_right</span>
+      </button>
+    </div>
+  `;
+}
+
+function _startHeroCarousel() {
+  if (_heroInterval) clearInterval(_heroInterval);
+  _heroInterval = setInterval(_nextSlide, 5000);
+}
+
+function _nextSlide() {
+  _heroSlide = (_heroSlide + 1) % HUB_HERO_SLIDES.length;
+  _updateHero();
+  _resetHeroInterval();
+}
+
+function _prevSlide() {
+  _heroSlide = (_heroSlide - 1 + HUB_HERO_SLIDES.length) % HUB_HERO_SLIDES.length;
+  _updateHero();
+  _resetHeroInterval();
+}
+
+function _goToSlide(i) {
+  _heroSlide = i;
+  _updateHero();
+  _resetHeroInterval();
+}
+
+function _updateHero() {
+  const el = document.getElementById('hubHero');
+  if (!el) return;
+  el.classList.add('hub-hero--transitioning');
+  setTimeout(() => {
+    el.innerHTML = _renderHeroSlide(HUB_HERO_SLIDES[_heroSlide]);
+    el.classList.remove('hub-hero--transitioning');
+  }, 150);
+}
+
+function _resetHeroInterval() {
+  if (_heroInterval) clearInterval(_heroInterval);
+  _heroInterval = setInterval(_nextSlide, 5000);
 }
 
 function _joinWaitlist() {
@@ -197,7 +271,7 @@ function renderAuctionCard(a) {
     <div class="auction-card" onclick="navigate('detail', '${a.id}')">
       <div class="auction-img">
         <div class="auction-img-bg">${a.emoji || '📦'}</div>
-        ${a.seller.verified ? `<span class="auction-verified-badge"><span class="material-symbols-rounded" style="font-size:12px">verified</span></span>` : ''}
+        ${a.seller.verified ? `<span class="auction-verified-badge"><span class="material-symbols-rounded" style="font-size:11px">verified</span></span>` : ''}
       </div>
       <div class="auction-body">
         <div class="auction-category">${a.categoryLabel || 'General'}</div>
@@ -236,8 +310,9 @@ function startCardTimers() {
       const cd = D.countdown(endsAt);
       const val = el.querySelector('.timer-val');
       if (val) val.textContent = cd.str;
-      const isFeatured = el.classList.contains('featured-timer');
-      el.className = `${isFeatured ? 'featured-timer' : 'auction-timer'} ${cd.state}`;
+      const isFeatured = el.classList.contains('hub-featured-timer');
+      const base = isFeatured ? 'hub-featured-timer' : 'auction-timer';
+      el.className = `${base} ${cd.state}`;
       el.dataset.ends = endsAt;
     });
   }, 1000);
