@@ -2676,3 +2676,276 @@ body.theme-transitioning *::after {
   .hub-featured-card { grid-template-columns: 1fr; }
   .hub-featured-left { min-height: 140px; flex-direction: row; }
 }
+
+/* ══════════════════════════════════════════════
+   HUB v3 — full design sections
+   ══════════════════════════════════════════════ */
+
+/* ── "Puja en tiempo real" row ── */
+.hub-live-row {
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 32px; align-items: center;
+  margin-bottom: 32px;
+}
+.hub-live-left { }
+.hub-live-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #F0FDF4; color: #16A34A;
+  font-size: 12px; font-weight: 700; padding: 4px 12px;
+  border-radius: var(--radius-full); margin-bottom: 14px;
+  border: 1px solid #BBF7D0;
+}
+.hub-live-badge .live-dot { background: #16A34A; }
+.hub-live-headline {
+  font-family: var(--font-display);
+  font-size: 46px; font-weight: 400;
+  color: var(--purple); line-height: 1.0;
+  letter-spacing: 0.3px; margin-bottom: 14px;
+}
+.hub-live-desc {
+  font-size: 14px; color: var(--text-secondary);
+  line-height: 1.6; margin-bottom: 20px; max-width: 380px;
+}
+.hub-live-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* Featured card right */
+.hub-live-card {
+  background: var(--purple-light);
+  border-radius: var(--radius-lg); overflow: hidden;
+  cursor: pointer; border: 1px solid rgba(56,17,187,0.15);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.hub-live-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.hub-live-card-img {
+  position: relative; height: 180px;
+  background: linear-gradient(135deg, #e8e4ff, #d0c8ff);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hub-live-card-img::before {
+  content: '';
+  position: absolute; width: 160px; height: 160px;
+  border-radius: 50%; background: rgba(255,255,255,0.3);
+  top: 50%; left: 55%; transform: translate(-50%,-50%);
+}
+.hub-live-card-emoji { font-size: 80px; position: relative; z-index: 2; }
+.hub-live-card-tag {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--purple); color: white;
+  font-size: 11px; font-weight: 700; padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+.hub-live-card-body { padding: 16px; }
+.hub-live-card-lote { font-size: 11px; color: var(--text-tertiary); margin-bottom: 4px; }
+.hub-live-card-title { font-size: 15px; font-weight: 800; color: var(--text-primary); margin-bottom: 12px; line-height: 1.3; }
+.hub-live-card-meta {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.hub-live-card-meta-label { font-size: 10px; color: var(--text-tertiary); margin-bottom: 2px; }
+.hub-live-card-price { font-size: 20px; font-weight: 400; font-family: var(--font-display); color: var(--purple); }
+.hub-live-card-countdown {
+  font-size: 18px; font-weight: 800; color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.hub-live-card-countdown.soon { color: var(--orange); }
+.hub-live-card-countdown.urgent { color: var(--danger); }
+.hub-live-card-btn {
+  width: 100%; background: var(--teal); color: white;
+  border-radius: var(--radius-full); font-size: 14px; font-weight: 700;
+  padding: 12px; transition: background 0.15s;
+}
+.hub-live-card-btn:hover { background: var(--teal-dark); }
+
+/* ── Category chips ── */
+.hub-cat-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.hub-cat-chip {
+  padding: 8px 18px; border-radius: var(--radius-full);
+  font-size: 13px; font-weight: 700;
+  background: var(--card-bg); color: var(--text-secondary);
+  border: 1.5px solid var(--border); cursor: pointer;
+  transition: all 0.15s; white-space: nowrap;
+}
+.hub-cat-chip:hover { border-color: var(--purple); color: var(--purple); background: var(--purple-light); }
+
+/* ── Section header (hub style) ── */
+.hub-section-title {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 400;
+  color: var(--text-primary); letter-spacing: 0.3px;
+}
+.hub-see-all {
+  font-size: 13px; color: var(--text-tertiary);
+  cursor: pointer; font-weight: 600;
+  text-decoration: underline; white-space: nowrap;
+}
+.hub-see-all:hover { color: var(--purple); }
+
+/* ── Auction cards (hcard) ── */
+.hub-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.hcard {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  cursor: pointer; transition: all 0.2s;
+}
+.hcard:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: var(--purple-mid); }
+.hcard-img {
+  position: relative; height: 150px;
+  background: var(--bg-soft);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hcard-img-bg { font-size: 52px; }
+.hcard-fav {
+  position: absolute; top: 8px; right: 8px;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.85);
+  display: flex; align-items: center; justify-content: center;
+  border: none; cursor: pointer; color: var(--text-tertiary);
+  transition: color 0.15s;
+}
+.hcard-fav .material-symbols-rounded { font-size: 16px; }
+.hcard-fav:hover { color: var(--danger); }
+.hcard-timer {
+  position: absolute; bottom: 8px; left: 8px;
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--purple); color: white;
+  font-size: 11px; font-weight: 700; padding: 3px 9px;
+  border-radius: var(--radius-full);
+}
+.hcard-timer.soon { background: var(--orange); }
+.hcard-timer.urgent { background: var(--danger); }
+.hcard-body { padding: 12px 14px; }
+.hcard-cat { font-size: 10px; font-weight: 700; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 4px; }
+.hcard-title { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.3; margin-bottom: 10px; }
+.hcard-footer { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.hcard-price { font-size: 15px; font-weight: 800; color: var(--text-primary); }
+.hcard-bid-btn {
+  background: var(--teal); color: white;
+  border: none; border-radius: var(--radius-full);
+  font-size: 12px; font-weight: 700; padding: 6px 14px;
+  cursor: pointer; white-space: nowrap; font-family: var(--font);
+  transition: background 0.15s;
+}
+.hcard-bid-btn:hover { background: var(--teal-dark); }
+.hcard-meta { font-size: 11px; color: var(--text-tertiary); margin-top: 6px; }
+
+/* ── "Así de fácil" dark section ── */
+.hub-how-dark {
+  background: var(--purple);
+  border-radius: var(--radius-lg);
+  padding: 40px 36px;
+  margin: 0 -32px 28px;
+}
+.hub-how-dark-title {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 400;
+  color: white; letter-spacing: 0.3px;
+  margin-bottom: 24px;
+}
+.hub-how-dark-steps {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+}
+.hub-dark-step {
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius); padding: 20px;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.hub-dark-step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--teal); color: white;
+  font-size: 16px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.hub-dark-step-title { font-size: 15px; font-weight: 800; color: white; margin-bottom: 6px; }
+.hub-dark-step-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; }
+
+/* ── Seller CTA (teal-soft bg) ── */
+.hub-seller-teal {
+  background: var(--teal-soft);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.hub-seller-teal-left { max-width: 420px; }
+.hub-seller-teal-title {
+  font-family: var(--font-display);
+  font-size: 30px; font-weight: 400;
+  color: var(--purple); letter-spacing: 0.3px;
+  margin-bottom: 10px; line-height: 1.1;
+}
+.hub-seller-teal-desc { font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5; }
+.hub-seller-teal-deco {
+  width: 160px; height: 160px; border-radius: 50%;
+  background: rgba(147,187,17,0.2);
+  flex-shrink: 0; position: absolute; right: 40px; bottom: -20px;
+}
+
+/* ── App Waitlist ── */
+.hub-app-section {
+  display: grid; grid-template-columns: 1fr 200px;
+  gap: 24px; align-items: center;
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 32px 36px;
+  margin-bottom: 32px;
+}
+.hub-app-tag {
+  display: inline-block;
+  background: var(--teal-light); color: var(--teal-dark);
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+  padding: 3px 10px; border-radius: var(--radius-full);
+  margin-bottom: 12px;
+}
+.hub-app-title {
+  font-family: var(--font-display);
+  font-size: 26px; font-weight: 400;
+  color: var(--text-primary); line-height: 1.1;
+  margin-bottom: 10px;
+}
+.hub-app-desc { font-size: 13px; color: var(--text-tertiary); margin-bottom: 16px; line-height: 1.5; }
+.hub-app-form { display: flex; gap: 10px; }
+.hub-app-input { flex: 1; max-width: 260px; border-radius: var(--radius-full) !important; }
+.hub-app-right { display: flex; justify-content: center; }
+.hub-app-phone {
+  width: 120px; height: 180px;
+  border: 2px solid var(--border); border-radius: 16px;
+  background: var(--bg-soft);
+  display: flex; align-items: center; justify-content: center;
+}
+.hub-app-phone-screen {
+  font-size: 10px; font-weight: 700; color: var(--text-tertiary);
+  text-align: center; line-height: 1.4; letter-spacing: 0.3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .hub-cards-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+  .hub-live-row { grid-template-columns: 1fr; gap: 20px; }
+  .hub-how-dark { margin: 0 -20px 24px; padding: 28px 24px; }
+  .hub-how-dark-steps { grid-template-columns: 1fr; gap: 12px; }
+  .hub-cards-grid { grid-template-columns: repeat(2, 1fr); }
+  .hub-app-section { grid-template-columns: 1fr; }
+  .hub-app-right { display: none; }
+}
+@media (max-width: 640px) {
+  .hub-live-headline { font-size: 32px; }
+  .hub-how-dark { margin: 0 -16px 20px; padding: 24px 20px; }
+  .hub-how-dark-title { font-size: 28px; }
+  .hub-seller-teal { padding: 24px 20px; }
+  .hub-seller-teal-title { font-size: 24px; }
+  .hub-seller-teal-deco { display: none; }
+  .hub-cards-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .hub-app-section { padding: 24px 20px; }
+}
