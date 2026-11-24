@@ -10,6 +10,11 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path:'home',
     component: HomeComponent
   },
@@ -33,6 +38,10 @@ const routes: Routes = [
   },{
     path:'contact',
     component: ContactComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/home'
   }
 ];
 
