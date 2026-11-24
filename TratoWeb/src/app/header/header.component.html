@@ -1,30 +1,74 @@
-<br>
-<br>
-<div class="logSearch">
-    <div>
-    <img src='assets/images/logo/principal_logo.png'>    
+<header class="trato-header">
+  <div class="header-inner">
+
+    <a routerLink="/home" class="header-logo" aria-label="Trato Subastas, inicio">
+      <img src="assets/images/logo/principal_logo.png" alt="Trato Subastas" class="logo-img">
+    </a>
+
+    <nav class="nav-links" aria-label="Principal">
+      <a routerLink="/home" routerLinkActive="active">Explorar</a>
+      <a routerLink="/auctions" routerLinkActive="active">Subastas</a>
+      <a routerLink="/exchanges" routerLinkActive="active">Intercambios</a>
+      <a routerLink="/categories" routerLinkActive="active">Categorías</a>
+    </nav>
+
+    <div class="search-wrap">
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+           aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="m20 20-3.5-3.5"></path>
+      </svg>
+      <label for="q" class="sr">Buscar subastas</label>
+      <input id="q" type="search" placeholder="¿Qué estás buscando?" class="search-input">
     </div>
-    <div class="inputSearch">
-        <input class="search" type="text">        
-     </div>
-     
-        <button  class="buttonIngresar">
-          <b>  ingresar</b>
-        </button>
-        <button  class="buttonRegistro">
-            <b>registro</b>
-        </button>
 
+    <div class="header-actions">
+      <a routerLink="/home" class="btn-ingresar hide-sm">Ingresar</a>
+      <a routerLink="/home" class="btn-registro hide-sm">Crear cuenta</a>
+
+      <button type="button" class="show-sm icon-btn" aria-label="Ingresar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+             aria-hidden="true">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path>
+        </svg>
+      </button>
+
+      <button type="button" class="menu-btn show-sm icon-btn" (click)="toggleMenu()"
+              aria-label="Abrir menú" [attr.aria-expanded]="menuOpen">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 8h16M4 16h10"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" *ngIf="menuOpen" (click)="closeMenu()">
+  <div class="mobile-menu-panel" (click)="$event.stopPropagation()">
+    <div class="mobile-menu-header">
+      <img src="assets/images/logo/principal_logo.png" alt="Trato Subastas" style="height:36px;filter:brightness(0) invert(1)">
+      <button type="button" class="close-btn" (click)="closeMenu()" aria-label="Cerrar menú">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav" aria-label="Menú principal">
+      <a routerLink="/home" routerLinkActive="active" (click)="closeMenu()">Explorar</a>
+      <a routerLink="/auctions" routerLinkActive="active" (click)="closeMenu()">Subastas</a>
+      <a routerLink="/exchanges" routerLinkActive="active" (click)="closeMenu()">Intercambios</a>
+      <a routerLink="/categories" routerLinkActive="active" (click)="closeMenu()">Categorías</a>
+      <a routerLink="/products" routerLinkActive="active" (click)="closeMenu()">Productos</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contacto</a>
+    </nav>
+    <div class="mobile-actions">
+      <a routerLink="/home" class="btn-ingresar-full" (click)="closeMenu()">Ingresar</a>
+      <a routerLink="/home" class="btn-registro-full" (click)="closeMenu()">Crear cuenta</a>
+    </div>
+  </div>
 </div>
-<br>
-<br>
-<nav>
-    <a routerLink="/home" routerLinkActive="active">Home</a>
-    <a routerLink="/categories" routerLinkActive="active">Categorias</a>
-    <a routerLink="/products" routerLinkActive="active">Productos</a>
-    <a routerLink="/exchanges" routerLinkActive="active">Intercambios</a>
-    <a routerLink="/auctions" routerLinkActive="active">Subastas</a>
-    <a routerLink="/contact" routerLinkActive="active">Contactos</a>
-</nav>
-<br>
-

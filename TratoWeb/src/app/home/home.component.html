@@ -1,13 +1,81 @@
+<div class="page-wrapper">
+  <app-header></app-header>
 
-<div class="home-content">   
-    <app-header></app-header>
-    <app-banner></app-banner>    
-</div>
-<div class="home-content-body">
-    <app-auctions></app-auctions>
-</div>
-<div class="home-content-body">
-    <app-exchanges></app-exchanges>
-</div>
+  <main>
+    <!-- Banner carousel -->
+    <app-banner></app-banner>
 
-<app-footer></app-footer>
+    <!-- Hero intro -->
+    <section class="hero-section">
+      <div class="section-container">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <span class="hero-badge">
+              <span class="badge-dot"></span>Subastas en vivo
+            </span>
+            <h1 class="tt hero-title">
+              Puja en tiempo real.
+              <span class="title-highlight">Cierra tu trato.</span>
+            </h1>
+            <p class="hero-desc">
+              Encuentra piezas únicas, sigue cada oferta al segundo y paga de forma segura cuando ganas.
+            </p>
+            <div class="hero-actions">
+              <a routerLink="/auctions" class="btn-primary">Explorar subastas</a>
+              <a routerLink="/exchanges" class="btn-secondary">Ver intercambios</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subastas section -->
+    <section class="content-section">
+      <app-auctions></app-auctions>
+    </section>
+
+    <!-- Intercambios section -->
+    <section class="content-section">
+      <app-exchanges></app-exchanges>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="how-section">
+      <div class="how-inner">
+        <h2 class="tt">Así de fácil</h2>
+        <ol class="steps-grid">
+          <li class="step-card">
+            <span class="tt step-num">1</span>
+            <h3 class="tt">Crea tu cuenta</h3>
+            <p>Verifica tu identidad y agrega un método de pago para poder pujar.</p>
+          </li>
+          <li class="step-card">
+            <span class="tt step-num">2</span>
+            <h3 class="tt">Puja en vivo</h3>
+            <p>Sigue el contador y recibe un aviso cuando alguien supere tu oferta.</p>
+          </li>
+          <li class="step-card">
+            <span class="tt step-num">3</span>
+            <h3 class="tt">Gana y recibe</h3>
+            <p>Al cerrar la subasta, paga con seguridad y coordina el envío con el vendedor.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- CTA vender -->
+    <section class="sell-section">
+      <div class="sell-inner section-container">
+        <div class="sell-card">
+          <div class="sell-text">
+            <h2 class="tt">¿Tienes algo para subastar?</h2>
+            <p>Publica tu artículo, fija un precio base y deja que los compradores compitan.</p>
+          </div>
+          <a routerLink="/auctions" class="btn-sell">Empezar a vender</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</div>

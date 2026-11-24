@@ -1,24 +1,29 @@
-<img class="img-logo" src="assets/images/logo/exchangesLogo.png">
-
-<div class="exchange-frame">
-    <div class="auction-grid" >
-        <div class="exchange-content" *ngFor="let exch of exchange">                          
-                <img [src]="exch.image" [alt]="exch.description">    
-                <div class="exchange-bid">               
-                    <P class="title-color">{{exch.productName| uppercase}} </P>                           
-                </div>             
-                <img class="img-exchangeState" [src]="exch.exchangesState" [alt]="exch.description">
+<section class="exchanges-section" id="intercambios">
+  <div class="section-container">
+    <div class="section-header">
+      <h2 class="tt">Intercambios</h2>
+      <a routerLink="/exchanges">Ver todos los intercambios</a>
+    </div>
+    <div class="auction-grid">
+      <article class="exchange-card" *ngFor="let exch of exchange">
+        <div class="card-img-wrap">
+          <img [src]="exch.image" [alt]="exch.productName" class="card-img">
+          <span class="card-badge">Intercambio</span>
         </div>
+        <div class="card-body">
+          <div class="card-info">
+            <span class="card-category">Propuesta de intercambio</span>
+            <h3 class="card-title">{{ exch.productName }}</h3>
+          </div>
+          <div class="card-footer">
+            <div class="card-price">
+              <span class="price-label">Valor estimado</span>
+              <span class="tt price-value">{{ exch.exchangesValue }}</span>
+            </div>
+            <a routerLink="/exchanges" class="btn-exchange">Ver oferta</a>
+          </div>
+        </div>
+      </article>
     </div>
-    <div class="exchange-menu">
-        <div class="union"> 
-            <img class="union-menu" src="assets/images/logo/subtractMenu.png" alt="">
-            <P><strong><a routerLink="/home" routerLinkActive="active">Inicio</a></strong></P></div>            
-        <div class="union"> 
-            <img class="union-menu" src="assets/images/logo/subtractMenu.png" alt="">
-            <P><strong><a routerLink="/products" routerLinkActive="active">Ver Mas Productos</a></strong></P></div>            
-        <div class="union">            
-            <img class="union-menu" src="assets/images/logo/subtractMenu.png" alt="">
-            <P><strong>Crear Intercambio</strong></P></div>
-    </div>
-</div>
+  </div>
+</section>

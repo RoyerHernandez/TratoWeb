@@ -1,10 +1,30 @@
-<h3 appHighlight>{{product.title| uppercase}} </h3>  
-<div class="product-content">
-<img [src]="product.image"> 
-<div class="description">{{product.description}}</div>
-</div>  
-<div class="product-price">
-    <div><strong>{{product.price | currency}} </strong></div>
-    <div><button (click)="addCar()">Añadir al carrito</button></div>
-    <a [routerLink]="['/products', product.id]">Ver Detalle</a>
-</div>
+<article class="product-card">
+  <div class="card-img-wrap">
+    <img [src]="product.image" [alt]="product.title" class="card-img">
+  </div>
+  <div class="card-body">
+    <div class="card-info">
+      <span class="card-category">Producto</span>
+      <h3 class="card-title">{{ product.title }}</h3>
+      <p class="card-desc">{{ product.description }}</p>
+    </div>
+    <div class="card-footer">
+      <div class="card-price">
+        <span class="price-label">Precio</span>
+        <span class="tt price-value">{{ product.price | currency }}</span>
+      </div>
+      <div class="card-actions">
+        <a [routerLink]="['/products', product.id]" class="btn-detail">Ver detalle</a>
+        <button (click)="addCar()" class="btn-cart" aria-label="Añadir al carrito">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</article>

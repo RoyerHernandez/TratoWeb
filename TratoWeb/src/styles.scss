@@ -1,65 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
-.body {
+/* Trato Design System */
+:root {
+  --trato-purple: #3811BB;
+  --trato-purple-muted: rgba(56,17,187,.78);
+  --trato-purple-soft: rgba(56,17,187,.07);
+  --trato-purple-glass: rgba(56,17,187,.05);
+  --trato-green: #93BB11;
+  --trato-green-soft: rgba(147,187,17,.2);
+  --trato-bg: #FFFFFF;
+  --trato-white: #FFFFFF;
+  --trato-dark: #1a1a2e;
+  --trato-shadow: 0 18px 40px -28px rgba(56,17,187,.28), 0 0 0 1px rgba(56,17,187,.07);
+  --trato-shadow-sm: 0 8px 24px -16px rgba(56,17,187,.2), 0 0 0 1px rgba(56,17,187,.06);
+  --radius-card: 28px;
+  --radius-pill: 999px;
+  --max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Didact Gothic', 'Century Gothic', 'CenturyGothic', 'Avenir Next', sans-serif;
+}
+
+.tt {
+  font-family: 'Anton', Impact, 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
+  font-weight: 400;
+  letter-spacing: .01em;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  color: var(--trato-purple);
+}
+
+a {
+  color: var(--trato-purple);
+}
+
+a:hover {
+  color: #2A0C8C;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.section-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 28px;
+
+  h2 {
     margin: 0;
-    padding: 0;
-}
-.product-grid{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-}
-.categorie-grid{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-}
-.auction-grid{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    border-color: gray;
-}
-.imageBanner{
-    width: 100%;
-    height: 100%;
+    font-size: clamp(28px, 4cqi, 48px);
+    line-height: 1;
+  }
+
+  a {
+    font-size: 15px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-
-@media (min-width: 576px){
-    .product-grid{
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .categorie-grid{
-        grid-template-columns: repeat(1, 1fr);
-    }
-    .auction-grid{
-        grid-template-columns: repeat(2, 4fr);
-    }
-    .product-price{
-        display: flex;
-        margin: 5px;
-        font-family:Arial, Helvetica, sans-serif; 
-        align-items: center;
-        justify-content:space-between;   
-    }
-    
-}
-@media (min-width: 800px){
-    .product-grid{
-        grid-template-columns: repeat(3, 1fr);
-    }
-    .categorie-grid{
-        grid-template-columns: repeat(1, 1fr);
-    }
-    .auction-grid{
-        grid-template-columns: repeat(3, 4fr);
-    }
-    
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 22px;
 }
 
-@media (max-width: 600px){
-    .imageBanner{
-        width: 100%;        
-    }
-    .auction-grid{
-        grid-template-columns: repeat(1, 1fr);
-        width: 100%
-    }
+.categorie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 22px;
+}
+
+.auction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  gap: 22px;
+}
+
+/* Legacy banner class kept for compat */
+.imageBanner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 32px;
 }

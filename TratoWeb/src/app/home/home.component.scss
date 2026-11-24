@@ -1,6 +1,230 @@
+.page-wrapper {
+  background: #FFFFFF;
+}
 
-.home-content{
-   
-    background-image:url('/assets/images/fondo.png');
+/* Hero */
+.hero-section {
+  padding: 56px 0 40px;
+}
 
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.hero-badge {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(147,187,17,.18);
+  border-radius: var(--radius-pill);
+  padding: 7px 16px;
+  font-size: 14px;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--trato-green);
+  flex: none;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: clamp(44px, 7vw, 88px);
+  line-height: 1;
+  color: var(--trato-purple);
+  text-wrap: balance;
+}
+
+.title-highlight {
+  background: rgba(147,187,17,.35);
+  border-radius: 10px;
+  padding: 0 8px;
+}
+
+.hero-desc {
+  margin: 0;
+  font-size: 18px;
+  color: var(--trato-purple-muted);
+  max-width: 36ch;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-primary {
+  text-decoration: none;
+  background: var(--trato-purple);
+  color: #FFFFFF;
+  padding: 0 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 700;
+  transition: opacity .15s;
+
+  &:hover { opacity: .88; color: #FFFFFF; }
+}
+
+.btn-secondary {
+  text-decoration: none;
+  background: var(--trato-purple-glass);
+  color: var(--trato-purple);
+  padding: 0 28px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  transition: background .15s;
+
+  &:hover { background: rgba(56,17,187,.1); }
+}
+
+/* Content sections */
+.content-section {
+  padding: 0 0 16px;
+}
+
+/* How it works */
+.how-section {
+  background: var(--trato-purple);
+  border-radius: 56px 56px 0 0;
+  margin-top: 64px;
+  color: #FFFFFF;
+}
+
+.how-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 72px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  h2 {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1;
+  }
+}
+
+.steps-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 20px;
+}
+
+.step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255,255,255,.08);
+  border-radius: 28px;
+  padding: 28px;
+
+  h3 {
+    margin: 0;
+    font-size: 26px;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(255,255,255,.85);
+    line-height: 1.55;
+  }
+}
+
+.step-num {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--trato-green);
+  color: var(--trato-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}
+
+/* Sell CTA */
+.sell-section {
+  background: var(--trato-purple);
+}
+
+.sell-inner {
+  background: #FFFFFF;
+  border-radius: 56px 56px 0 0;
+  padding-top: 72px;
+  padding-bottom: 0;
+}
+
+.sell-card {
+  position: relative;
+  overflow: hidden;
+  background: rgba(147,187,17,.28);
+  border-radius: 40px;
+  padding: clamp(28px, 5vw, 60px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.sell-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 560px;
+
+  h2 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1;
+    color: var(--trato-purple);
+  }
+
+  p {
+    margin: 0;
+    font-size: 17px;
+    color: var(--trato-purple);
+  }
+}
+
+.btn-sell {
+  text-decoration: none;
+  background: var(--trato-purple);
+  color: #FFFFFF;
+  padding: 0 30px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity .15s;
+
+  &:hover { opacity: .88; color: #FFFFFF; }
 }

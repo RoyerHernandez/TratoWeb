@@ -1,8 +1,48 @@
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide" *ngFor="let img of image">
-        <img class="imageBanner" [src]="img.image" [alt]="img.title" />
+<section class="banner-section" aria-roledescription="carrusel" aria-label="Destacados">
+  <div class="banner-track-wrap"
+       (mouseenter)="pauseAutoplay()"
+       (mouseleave)="resumeAutoplay()">
+    <div class="banner-track" [style.transform]="translateX">
+      <div class="banner-slide"
+           *ngFor="let img of image; let i = index"
+           [attr.aria-label]="(i+1) + ' de ' + image.length"
+           aria-roledescription="diapositiva">
+        <img [src]="img.image" [alt]="img.title" class="banner-img">
+        <div class="banner-overlay">
+          <span class="banner-tag">Subasta especial</span>
+          <h2 class="tt banner-title">{{ img.title }}</h2>
+          <p class="banner-desc">{{ img.description }}</p>
+          <a routerLink="/auctions" class="banner-cta">Ver subastas</a>
+        </div>
       </div>
     </div>
-  </div>```
-  
+
+    <div class="banner-controls">
+      <div class="banner-dots">
+        <button *ngFor="let img of image; let i = index"
+                [attr.aria-label]="'Ir a diapositiva ' + (i+1)"
+                [attr.aria-current]="i === currentIndex ? 'true' : null"
+                (click)="goTo(i)"
+                class="dot-btn">
+          <span class="dot" [class.dot-active]="i === currentIndex"></span>
+        </button>
+      </div>
+      <div class="banner-nav">
+        <button (click)="prev()" aria-label="Banner anterior" class="nav-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="m15 6-6 6 6 6"></path>
+          </svg>
+        </button>
+        <button (click)="next()" aria-label="Banner siguiente" class="nav-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="m9 6 6 6-6 6"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
