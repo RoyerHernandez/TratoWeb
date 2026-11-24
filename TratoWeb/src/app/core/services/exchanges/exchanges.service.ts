@@ -6,71 +6,68 @@ import { exchanges } from '../../../exchanges/exchanges.model';
 })
 export class ExchangesService {
 
-  constructor() { }
-
-  exchanges: exchanges[]=
-  [
+  exchanges: exchanges[] = [
     {
       id: '1',
-      productName: 'camiseta',
-      exchangesValue: '100',
-      image: 'assets/images/hoodie.png',
+      productName: 'Cámara Fujifilm X-T5',
+      exchangesValue: '$4.800.000',
+      image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&q=80',
       startValue: '05:00',
-      exchangesState: 'assets/images/logo/union.png',
-      description: 'Espacio para foto'
+      exchangesState: 'Activo',
+      description: 'Cámara mirrorless Fujifilm X-T5. Busco intercambio por Sony o Nikon.'
     },
     {
       id: '2',
-      productName: 'stickers1',
-      exchangesValue: '100',
-      image: 'assets/images/stickers1.png',
+      productName: 'Bicicleta Trek Marlin 7 — 2023',
+      exchangesValue: '$3.200.000',
+      image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&q=80',
       startValue: '05:00',
-      exchangesState: 'assets/images/logo/union.png',
-      description: 'Espacio para foto'
+      exchangesState: 'Activo',
+      description: 'Trek Marlin 7, talla M, 2023. Cambio por bici de ruta o electrónica.'
     },
     {
       id: '3',
-      productName: 'stickers2',
-      exchangesValue: '100',
-      image: 'assets/images/stickers2.png',
+      productName: 'Smart TV Samsung 55" QLED',
+      exchangesValue: '$2.900.000',
+      image: 'https://images.unsplash.com/photo-1593784991095-a205069470b6?w=600&q=80',
       startValue: '05:00',
-      exchangesState: 'assets/images/logo/union.png',
-      description: 'Espacio para foto'
+      exchangesState: 'Activo',
+      description: 'Samsung QLED 55", 4K, 2022. Intercambio por laptop o tablet.'
     },
     {
       id: '4',
-      productName: 'pin',
-      exchangesValue: '100',
-      image: 'assets/images/pin.png',
+      productName: 'Colección Viniles — 45 discos',
+      exchangesValue: '$1.500.000',
+      image: 'https://images.unsplash.com/photo-1483412033650-1015ddeb83d1?w=600&q=80',
       startValue: '05:00',
-      exchangesState: 'assets/images/logo/union.png',
-      description: 'Espacio para foto'
+      exchangesState: 'Activo',
+      description: '45 vinilos originales, rock clásico y jazz. Cambio por equipos de audio.'
     },
     {
       id: '5',
-      productName: 'mug',
-      exchangesValue: '100',
-      image: 'assets/images/mug.png',
+      productName: 'iPad Pro M2 11" 256GB',
+      exchangesValue: '$4.100.000',
+      image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&q=80',
       startValue: '05:00',
-      exchangesState: 'assets/images/logo/union.png',
-      description: 'Espacio para foto'
+      exchangesState: 'Activo',
+      description: 'iPad Pro M2 11", 256GB WiFi. Intercambio por MacBook o cámara.'
     },
     {
       id: '6',
-      productName: 'camiseta',
-      exchangesValue: '100',
-      image: 'assets/images/camiseta.png',
+      productName: 'Moto Honda CB 300R — 2022',
+      exchangesValue: '$9.500.000',
+      image: 'https://images.unsplash.com/photo-1558980664-28d10ee9bb52?w=600&q=80',
       startValue: '05:00',
-      exchangesState: 'assets/images/logo/union.png',
-      description: 'Espacio para foto'
-    }];
-
-    getAllExchanges(){
-      return this.exchanges;
+      exchangesState: 'Activo',
+      description: 'Honda CB 300R 2022, 8.000 km. Cambio por moto de mayor cilindraje.'
     }
+  ];
 
-    getExchange(id: string){
-      return this.exchanges.find(item => id === item.id)
-    }
+  getAllExchanges() {
+    return this.exchanges;
+  }
 
+  getExchange(id: string) {
+    return this.exchanges.find(item => id === item.id);
+  }
 }

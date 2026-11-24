@@ -44,6 +44,17 @@
   border-radius: var(--radius-pill);
 }
 
+.card-desc {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--trato-purple-muted);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .card-body {
   padding: 14px 10px 8px;
   display: flex;

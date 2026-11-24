@@ -11,21 +11,21 @@ export class BannerComponent implements OnInit, OnDestroy {
   image: images[] = [
     {
       id: 1,
-      title: 'Relojes de colección',
-      description: 'Piezas seleccionadas en subasta especial.',
-      image: 'assets/images/banner/banner-1.jpg'
+      title: 'Joyería colombiana',
+      description: 'Esmeraldas de Muzo, oro 18K y piezas únicas de los mejores joyeros del país.',
+      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=80'
     },
     {
       id: 2,
-      title: 'Arte y coleccionables',
-      description: 'Cuadros, figuras y objetos únicos cada semana.',
-      image: 'assets/images/banner/banner-2.jpg'
+      title: 'Relojes y vintage',
+      description: 'Seikos, Casios y relojes de colección. Encuentra tu próximo tesoro.',
+      image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=1200&q=80'
     },
     {
       id: 3,
-      title: 'Instrumentos musicales',
-      description: 'Guitarras, pianos y más en subasta.',
-      image: 'assets/images/banner/banner-3.jpg'
+      title: 'Arte y coleccionables',
+      description: 'Cuadros, figuras y objetos únicos que llegan cada semana a subasta.',
+      image: 'https://images.unsplash.com/photo-1541512416146-3cf58d6b27cc?w=1200&q=80'
     }
   ];
 

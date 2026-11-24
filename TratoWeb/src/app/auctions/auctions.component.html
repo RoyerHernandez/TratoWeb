@@ -2,33 +2,32 @@
   <div class="section-container">
     <div class="section-header">
       <h2 class="tt">Subastas activas</h2>
-      <a routerLink="/auctions">Ver todas las subastas</a>
+      <a routerLink="/auctions">Ver todas →</a>
     </div>
     <div class="auction-grid">
-      <article class="auction-card" *ngFor="let auct of Auction">
+      <article class="auction-card" *ngFor="let auct of Auction" routerLink="/auctions">
         <div class="card-img-wrap">
           <img [src]="auct.image" [alt]="auct.product_name" class="card-img">
-          <span class="card-timer">
+          <span class="card-timer" [class.ending]="auct.bidState === 'ending'">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-                 aria-hidden="true">
+                 stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
               <circle cx="12" cy="13" r="8"></circle>
               <path d="M12 9v4l2.5 2M9 2h6"></path>
             </svg>
-            En vivo
+            {{ auct.startValue }}
           </span>
         </div>
         <div class="card-body">
           <div class="card-info">
-            <span class="card-category">Subasta</span>
+            <span class="card-category">{{ auct.categoryLabel }} · {{ auct.location }}</span>
             <h3 class="card-title">{{ auct.product_name }}</h3>
           </div>
           <div class="card-footer">
             <div class="card-price">
-              <span class="price-label">Puja actual</span>
-              <span class="tt price-value">{{ auct.bidValue | currency }}</span>
+              <span class="price-label">{{ auct.totalBids }} pujas</span>
+              <span class="tt price-value">{{ auct.bidValue | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
             </div>
-            <a routerLink="/auctions" class="btn-bid">Pujar</a>
+            <a routerLink="/auctions" class="btn-bid" (click)="$event.stopPropagation()">Pujar</a>
           </div>
         </div>
       </article>

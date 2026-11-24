@@ -44,6 +44,10 @@
   font-size: 13px;
   padding: 6px 12px;
   border-radius: var(--radius-pill);
+
+  &.ending {
+    background: #c0392b;
+  }
 }
 
 .card-body {
