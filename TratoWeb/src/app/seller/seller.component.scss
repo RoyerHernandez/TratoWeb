@@ -1,0 +1,429 @@
+.seller-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+.btn-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--trato-purple);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  opacity: .7;
+  transition: opacity .15s;
+
+  &:hover { opacity: 1; color: var(--trato-purple); }
+}
+
+/* ── Profile container ── */
+.seller-profile {
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: var(--trato-shadow);
+  overflow: hidden;
+}
+
+/* ── Banner ── */
+.sp-banner {
+  height: 140px;
+  width: 100%;
+}
+
+/* ── Header ── */
+.sp-header-wrap {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 0 28px 20px;
+  flex-wrap: wrap;
+}
+
+.sp-avatar-wrap {
+  margin-top: -44px;
+  flex-shrink: 0;
+}
+
+.sp-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--trato-purple);
+  color: #fff;
+  font-family: 'Anton', sans-serif;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #fff;
+  box-shadow: 0 4px 16px rgba(56,17,187,.25);
+}
+
+.sp-header {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
+}
+
+.sp-name {
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--trato-purple);
+  margin-bottom: 6px;
+}
+
+.sp-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.sp-badge {
+  background: rgba(56,17,187,.07);
+  border: 1px solid rgba(56,17,187,.12);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--trato-purple);
+}
+
+.sp-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.sp-header-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding-top: 8px;
+}
+
+/* ── Pill buttons ── */
+.btn-pill {
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .15s;
+
+  &--outline {
+    border: 1.5px solid rgba(56,17,187,.3);
+    background: transparent;
+    color: var(--trato-purple);
+
+    &:hover { background: rgba(56,17,187,.05); }
+  }
+
+  &--following {
+    background: rgba(56,17,187,.08);
+    border-color: var(--trato-purple);
+  }
+
+  &--primary {
+    background: var(--trato-purple);
+    border: none;
+    color: #fff;
+
+    &:hover { opacity: .88; }
+  }
+}
+
+/* ── Stats ── */
+.sp-stats-row {
+  display: flex;
+  border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.sp-stat {
+  flex: 1;
+  text-align: center;
+  padding: 16px 8px;
+  border-right: 1px solid rgba(0,0,0,.06);
+
+  &:last-child { border-right: none; }
+}
+
+.sp-stat-val {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--trato-purple);
+  line-height: 1.1;
+}
+
+.sp-stat-lbl {
+  font-size: 11px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  margin-top: 2px;
+}
+
+/* ── Tabs ── */
+.sp-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  padding: 0 24px;
+}
+
+.sp-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 16px;
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 700;
+  color: #888;
+  cursor: pointer;
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s, border-color .15s;
+
+  &:hover { color: var(--trato-purple); }
+
+  &.active {
+    color: var(--trato-purple);
+    border-bottom-color: var(--trato-purple);
+  }
+}
+
+.sp-tab-count {
+  background: rgba(56,17,187,.1);
+  color: var(--trato-purple);
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* ── Content layout ── */
+.sp-content {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  padding: 24px 28px;
+  align-items: start;
+}
+
+.sp-main { min-width: 0; }
+
+.sp-empty {
+  padding: 48px 20px;
+  text-align: center;
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* ── Sidebar cards ── */
+.sp-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sp-verified-card,
+.sp-rating-card {
+  background: rgba(56,17,187,.03);
+  border: 1px solid rgba(56,17,187,.1);
+  border-radius: 20px;
+  padding: 18px;
+}
+
+.sp-vc-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--trato-purple);
+  margin-bottom: 14px;
+}
+
+.sp-verify-list { display: flex; flex-direction: column; gap: 8px; }
+
+.sp-verify-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #888;
+  opacity: .6;
+
+  &.verified { opacity: 1; color: #111; }
+}
+
+.sp-verify-icon { font-size: 14px; }
+
+.sp-rc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.sp-rating-big {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--trato-purple);
+  line-height: 1;
+}
+
+.sp-stars { font-size: 14px; }
+.sp-reviews { font-size: 12px; color: #888; margin-top: 2px; }
+
+.sp-bars { display: flex; flex-direction: column; gap: 6px; }
+
+.sp-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sp-bar-label { font-size: 11px; color: #888; width: 20px; }
+
+.sp-bar-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(0,0,0,.07);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.sp-bar-fill {
+  height: 100%;
+  background: var(--trato-purple);
+  border-radius: 999px;
+  transition: width .4s ease;
+}
+
+.sp-bar-pct { font-size: 11px; color: #888; width: 28px; text-align: right; }
+
+/* ── Auction cards (reused styles) ── */
+.auction-card {
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--trato-shadow);
+  transition: transform .2s, box-shadow .2s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 48px -24px rgba(56,17,187,.34), 0 0 0 1px rgba(56,17,187,.08);
+  }
+}
+
+.card-img-wrap {
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.card-timer {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--trato-purple);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+
+  &.ending { background: #c0392b; }
+}
+
+.card-body {
+  padding: 12px 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.card-category { font-size: 12px; color: #888; }
+.card-title { margin: 2px 0 0; font-size: 14px; font-weight: 700; color: var(--trato-purple); line-height: 1.3; }
+
+.card-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.price-label { font-size: 12px; color: #888; }
+.price-value { font-size: 18px; color: var(--trato-purple); line-height: 1.2; }
+
+.btn-bid {
+  background: var(--trato-green);
+  color: var(--trato-purple);
+  font-weight: 700;
+  padding: 0 18px;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: opacity .15s;
+
+  &:hover { opacity: .88; }
+}
+
+/* ── Toast ── */
+.sp-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--trato-purple);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  white-space: nowrap;
+  z-index: 999;
+
+  &--visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .sp-content { grid-template-columns: 1fr; }
+  .sp-stats-row { flex-wrap: wrap; }
+  .sp-stat { min-width: 50%; }
+}
+
+@media (max-width: 480px) {
+  .seller-page { padding: 16px 12px 60px; }
+  .sp-header-wrap { padding: 0 16px 16px; }
+  .sp-tabs { padding: 0 12px; }
+}

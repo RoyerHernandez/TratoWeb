@@ -19,6 +19,9 @@ import { HighlightDirective } from './shared/directives/highlight.directive';
 import { CategorieComponent } from './categorie/categorie.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ScheduledComponent } from './scheduled/scheduled.component';
+import { SellerComponent } from './seller/seller.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ScheduledComponent } from './scheduled/scheduled.component';
     HighlightDirective,
     CategorieComponent,
     ProductDetailComponent,
-    ScheduledComponent
+    ScheduledComponent,
+    SellerComponent,
+    OnboardingComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

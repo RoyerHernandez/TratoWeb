@@ -1,0 +1,168 @@
+<div class="dash-page">
+
+  <div class="dash-topbar">
+    <div>
+      <h1 class="tt dash-title">Resumen del mes</h1>
+      <div class="dash-subtitle">Octubre 2026 · Maru Joyería</div>
+    </div>
+    <div class="dash-topbar-actions">
+      <button class="btn-ghost-pill" (click)="goToSeller()">🏪 Ver mi tienda</button>
+      <button class="btn-primary-pill" (click)="goToCreate()">+ Nueva subasta</button>
+    </div>
+  </div>
+
+  <!-- Alert -->
+  <div class="dash-alert">
+    <span class="dash-alert-icon">🏆</span>
+    <div class="dash-alert-text">
+      ¡Alcanzaste <strong>247 ventas</strong> este mes! Estás entre el <strong>top 5%</strong>
+      de vendedores en Joyería.
+      <span class="dash-alert-link">Ver insignia →</span>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="dash-kpi-grid">
+    <div class="dash-kpi" *ngFor="let k of kpis" [class.dash-kpi-highlight]="k.highlight">
+      <div class="dash-kpi-label">{{ k.label }}</div>
+      <div class="dash-kpi-value">{{ k.value }}</div>
+      <div class="dash-kpi-sub" [class.dash-kpi-up]="k.up" [class.dash-kpi-neutral]="!k.up">
+        {{ k.sub }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mid grid: chart + active auctions -->
+  <div class="dash-mid-grid">
+
+    <div class="dash-card">
+      <div class="dash-card-header">
+        <div class="dash-card-title">📈 Ingresos por semana — Oct 2026</div>
+        <span class="dash-card-action">Exportar CSV →</span>
+      </div>
+      <div class="dash-card-body">
+        <div class="dash-bar-chart">
+          <div class="dash-bar-wrap" *ngFor="let w of weeks" [title]="w.amount + ' COP'">
+            <div class="dash-bar" [class.dash-bar-active]="w.current" [style.height.px]="w.h"></div>
+            <div class="dash-bar-lbl">{{ w.label }}</div>
+          </div>
+        </div>
+        <div class="dash-chart-legend">
+          <div class="dash-legend-item">
+            <div class="dash-legend-dot dash-legend-dot--sep"></div>Septiembre
+          </div>
+          <div class="dash-legend-item">
+            <div class="dash-legend-dot dash-legend-dot--oct"></div>Octubre
+          </div>
+        </div>
+        <div class="dash-chart-footer">
+          <div>
+            <div class="dash-cf-label">Promedio/semana</div>
+            <div class="dash-cf-val">$1.05M COP</div>
+          </div>
+          <div>
+            <div class="dash-cf-label">Mejor semana</div>
+            <div class="dash-cf-val dash-cf-val--best">Oct 2 · $1.58M</div>
+          </div>
+          <div>
+            <div class="dash-cf-label">Comisión Trato (3%)</div>
+            <div class="dash-cf-val">$126K COP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-card">
+      <div class="dash-card-header">
+        <div class="dash-card-title">🔨 Subastas activas</div>
+        <span class="dash-card-action" (click)="goToAuctions()">Ver todas →</span>
+      </div>
+      <div class="dash-card-body dash-card-body-tight">
+        <div class="dash-auction-item" *ngFor="let a of activeAuctions">
+          <div class="dash-auction-img">{{ a.emoji }}</div>
+          <div class="dash-auction-info">
+            <div class="dash-auction-name">{{ a.name }}</div>
+            <div class="dash-auction-meta">
+              <span class="dash-bids-badge">{{ a.bids }} pujas</span> · Joyería
+            </div>
+          </div>
+          <div class="dash-auction-right">
+            <div class="dash-auction-price">{{ a.price }}</div>
+            <div class="dash-timer" [ngClass]="'dash-timer-' + a.timerClass">⏱ {{ a.timer }}</div>
+          </div>
+        </div>
+        <button class="btn-primary-pill" style="width:100%;justify-content:center;margin-top:14px"
+                (click)="goToCreate()">
+          + Crear nueva subasta
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom grid: transactions + right column -->
+  <div class="dash-bot-grid">
+
+    <div class="dash-card">
+      <div class="dash-card-header">
+        <div class="dash-card-title">💸 Últimas transacciones</div>
+        <span class="dash-card-action">Ver historial →</span>
+      </div>
+      <div class="dash-card-body dash-card-body-tight">
+        <div class="dash-tx-item" *ngFor="let t of transactions">
+          <div class="dash-tx-av" [style.background]="t.bg" [style.color]="t.fg">{{ t.initials }}</div>
+          <div class="dash-tx-info">
+            <div class="dash-tx-name">{{ t.name }}</div>
+            <div class="dash-tx-prod">{{ t.product }}</div>
+          </div>
+          <div class="dash-tx-right">
+            <div class="dash-tx-amount">{{ t.amount }}</div>
+            <div class="dash-tx-date">{{ t.date }}</div>
+            <span class="dash-tx-status" [ngClass]="'dash-status-' + t.statusClass">{{ t.statusLabel }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-right-col">
+
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title">🏅 Artículos más vistos</div>
+          <span class="dash-card-action">Ver analíticas →</span>
+        </div>
+        <div class="dash-card-body dash-card-body-tight">
+          <div class="dash-top-item" *ngFor="let item of topItems">
+            <div class="dash-top-rank" [class.dash-rank-gold]="item.gold">{{ item.rank }}</div>
+            <div class="dash-top-info">
+              <div class="dash-top-name">{{ item.name }}</div>
+              <div class="dash-top-stat">{{ item.views }}</div>
+            </div>
+            <div class="dash-top-val">{{ item.price }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="dash-card-header">
+          <div class="dash-card-title">🎯 Embudo de conversión</div>
+        </div>
+        <div class="dash-card-body">
+          <div class="dash-funnel-row" *ngFor="let f of funnel">
+            <div class="dash-funnel-label">{{ f.label }}</div>
+            <div class="dash-funnel-bar-wrap">
+              <div class="dash-funnel-bar-fill" [style.width.%]="f.pct" [style.background]="f.color"></div>
+            </div>
+            <div class="dash-funnel-val">{{ f.val }}</div>
+          </div>
+          <div class="dash-funnel-tip">
+            💡 <strong>Tip:</strong> Subastas con 3+ fotos convierten 2.1× más.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

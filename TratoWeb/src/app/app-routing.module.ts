@@ -8,6 +8,9 @@ import { ContactComponent } from './contact/contact.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ScheduledComponent } from './scheduled/scheduled.component';
+import { SellerComponent } from './seller/seller.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -43,6 +46,18 @@ const routes: Routes = [
   {
     path: 'scheduled',
     component: ScheduledComponent
+  },
+  {
+    path: 'seller',
+    component: SellerComponent
+  },
+  {
+    path: 'onboarding',
+    component: OnboardingComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent
   },
   {
     path: '**',

@@ -69,7 +69,7 @@
               <span class="price-label">{{ auct.totalBids }} pujas</span>
               <span class="tt price-value">{{ auct.bidValue | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
             </div>
-            <button class="btn-bid">Pujar</button>
+            <button class="btn-bid" (click)="openBid(auct, $event)">Pujar</button>
           </div>
         </div>
       </article>
@@ -93,4 +93,97 @@
       <line x1="5" y1="12" x2="19" y2="12"></line>
     </svg>
   </a>
+</div>
+
+<!-- ── Bid Modal ── -->
+<div class="bid-overlay" *ngIf="bidAuction" (click)="closeBid()" role="dialog" aria-modal="true">
+  <div class="bid-modal" (click)="$event.stopPropagation()">
+
+    <!-- Success state -->
+    <div class="bid-success" *ngIf="bidSuccess">
+      <div class="bid-success-icon">🎉</div>
+      <div class="bid-success-title tt">¡Puja registrada!</div>
+      <div class="bid-success-sub">
+        {{ bidAuction?.product_name }}
+      </div>
+      <div class="bid-success-amount">
+        {{ bidAmount | currency:'COP':'symbol-narrow':'1.0-0' }}
+      </div>
+    </div>
+
+    <!-- Normal bid form -->
+    <ng-container *ngIf="!bidSuccess">
+      <button class="bid-close" (click)="closeBid()" aria-label="Cerrar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6 6 18"></path>
+        </svg>
+      </button>
+
+      <div class="bid-modal-img-wrap">
+        <img [src]="bidAuction?.image" [alt]="bidAuction?.product_name" class="bid-modal-img">
+      </div>
+
+      <div class="bid-modal-body">
+        <span class="bid-modal-cat">{{ bidAuction?.categoryLabel }} · {{ bidAuction?.location }}</span>
+        <h2 class="bid-modal-title tt">{{ bidAuction?.product_name }}</h2>
+
+        <div class="bid-info-row">
+          <div class="bid-info-item">
+            <span class="bid-info-label">Puja actual</span>
+            <span class="bid-info-val tt">{{ bidAuction?.bidValue | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
+          </div>
+          <div class="bid-info-item">
+            <span class="bid-info-label">Incremento mínimo</span>
+            <span class="bid-info-val">{{ MIN_INCREMENT | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
+          </div>
+          <div class="bid-info-item">
+            <span class="bid-info-label">Total pujas</span>
+            <span class="bid-info-val">{{ bidAuction?.totalBids }}</span>
+          </div>
+        </div>
+
+        <div class="bid-input-section">
+          <label class="bid-input-label">Tu puja (mínimo {{ minBid | currency:'COP':'symbol-narrow':'1.0-0' }})</label>
+          <div class="bid-input-wrap">
+            <span class="bid-input-prefix">$</span>
+            <input
+              type="number"
+              class="bid-input"
+              [value]="bidAmount"
+              [min]="minBid"
+              step="50000"
+              (input)="onBidInput($any($event.target).value)"
+              placeholder="{{ minBid }}"
+              autofocus>
+          </div>
+          <div class="bid-error" *ngIf="bidError">{{ bidError }}</div>
+        </div>
+
+        <div class="bid-quick-row">
+          <button class="bid-quick" (click)="bidAmount = minBid; bidError = ''">
+            Mínima
+          </button>
+          <button class="bid-quick" (click)="bidAmount = minBid + 100000; bidError = ''">
+            +$100K
+          </button>
+          <button class="bid-quick" (click)="bidAmount = minBid + 250000; bidError = ''">
+            +$250K
+          </button>
+          <button class="bid-quick" (click)="bidAmount = minBid + 500000; bidError = ''">
+            +$500K
+          </button>
+        </div>
+
+        <button class="btn-confirm-bid" (click)="confirmBid()">
+          🔨 Confirmar puja · {{ bidAmount | currency:'COP':'symbol-narrow':'1.0-0' }}
+        </button>
+
+        <p class="bid-disclaimer">
+          Al pujar aceptas los términos de Trato. Si ganas, el pago se realiza a través de escrow seguro.
+        </p>
+      </div>
+    </ng-container>
+
+  </div>
 </div>

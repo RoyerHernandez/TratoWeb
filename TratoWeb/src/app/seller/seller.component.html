@@ -1,0 +1,177 @@
+<div class="seller-page">
+
+  <!-- Back -->
+  <a routerLink="/auctions" class="btn-back-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M19 12H5M12 5l-7 7 7 7"></path>
+    </svg>
+    Volver a subastas
+  </a>
+
+  <div class="seller-profile">
+
+    <!-- Banner -->
+    <div class="sp-banner" [style.background]="seller.gradient"></div>
+
+    <!-- Header -->
+    <div class="sp-header-wrap">
+      <div class="sp-avatar-wrap">
+        <div class="sp-avatar">{{ seller.initials }}</div>
+      </div>
+      <div class="sp-header">
+        <div class="sp-header-left">
+          <div class="sp-name tt">{{ seller.name }}</div>
+          <div class="sp-badges">
+            <span class="sp-badge" *ngFor="let b of seller.badges">{{ b }}</span>
+          </div>
+          <div class="sp-meta">
+            <span>📍 {{ seller.location }}</span>
+            <span>🗓 Miembro desde {{ seller.memberSince }}</span>
+            <span>⭐ {{ seller.rating }} calificación</span>
+          </div>
+        </div>
+        <div class="sp-header-actions">
+          <button class="btn-pill btn-pill--outline" [class.btn-pill--following]="following" (click)="toggleFollow()">
+            {{ following ? '✓ Siguiendo' : '+ Seguir' }}
+          </button>
+          <button class="btn-pill btn-pill--primary" (click)="contact()">
+            💬 Contactar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="sp-stats-row">
+      <div class="sp-stat">
+        <div class="sp-stat-val">{{ seller.sales }}</div>
+        <div class="sp-stat-lbl">Ventas</div>
+      </div>
+      <div class="sp-stat">
+        <div class="sp-stat-val">{{ seller.rating }} ⭐</div>
+        <div class="sp-stat-lbl">Calificación</div>
+      </div>
+      <div class="sp-stat">
+        <div class="sp-stat-val">{{ seller.activeListings }}</div>
+        <div class="sp-stat-lbl">Activas</div>
+      </div>
+      <div class="sp-stat">
+        <div class="sp-stat-val">{{ followersLabel }}</div>
+        <div class="sp-stat-lbl">Seguidores</div>
+      </div>
+      <div class="sp-stat">
+        <div class="sp-stat-val">{{ seller.deliveryRate }}%</div>
+        <div class="sp-stat-lbl">Entregas</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="sp-tabs">
+      <button class="sp-tab" [class.active]="activeTab === 'auctions'" (click)="setTab('auctions')">
+        Subastas activas <span class="sp-tab-count">{{ sellerAuctions.length }}</span>
+      </button>
+      <button class="sp-tab" [class.active]="activeTab === 'exchanges'" (click)="setTab('exchanges')">
+        Intercambios <span class="sp-tab-count">3</span>
+      </button>
+      <button class="sp-tab" [class.active]="activeTab === 'history'" (click)="setTab('history')">
+        Historial <span class="sp-tab-count">{{ seller.sales }}</span>
+      </button>
+    </div>
+
+    <!-- Content -->
+    <div class="sp-content">
+
+      <div class="sp-main">
+        <!-- Auctions tab -->
+        <ng-container *ngIf="activeTab === 'auctions'">
+          <div class="auction-grid" *ngIf="sellerAuctions.length > 0; else emptyAuctions">
+            <article class="auction-card" *ngFor="let a of sellerAuctions">
+              <div class="card-img-wrap">
+                <img [src]="a.image" [alt]="a.name" class="card-img">
+                <span class="card-timer" [class.ending]="a.bidState === 'ending'">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                       stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2M9 2h6"></path>
+                  </svg>
+                  {{ a.timer }}
+                </span>
+              </div>
+              <div class="card-body">
+                <div class="card-info">
+                  <span class="card-category">{{ a.categoryLabel }}</span>
+                  <h3 class="card-title">{{ a.name }}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="card-price">
+                    <span class="price-label">{{ a.bids }} pujas</span>
+                    <span class="tt price-value">{{ a.price }}</span>
+                  </div>
+                  <button class="btn-bid">Pujar</button>
+                </div>
+              </div>
+            </article>
+          </div>
+          <ng-template #emptyAuctions>
+            <div class="sp-empty">📦 No hay subastas activas</div>
+          </ng-template>
+        </ng-container>
+
+        <!-- Exchanges tab -->
+        <div class="sp-empty" *ngIf="activeTab === 'exchanges'">
+          🔄 No hay intercambios activos
+        </div>
+
+        <!-- History tab -->
+        <div class="sp-empty" *ngIf="activeTab === 'history'">
+          📋 Historial disponible próximamente
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sp-sidebar">
+        <div class="sp-verified-card">
+          <div class="sp-vc-title">🛡 Vendedor Verificado</div>
+          <div class="sp-verify-list">
+            <div class="sp-verify-item" [class.verified]="seller.verification.cedula">
+              <span class="sp-verify-icon">{{ seller.verification.cedula ? '✅' : '❌' }}</span>
+              Cédula de ciudadanía
+            </div>
+            <div class="sp-verify-item" [class.verified]="seller.verification.facial">
+              <span class="sp-verify-icon">{{ seller.verification.facial ? '✅' : '❌' }}</span>
+              Reconocimiento facial
+            </div>
+            <div class="sp-verify-item" [class.verified]="seller.verification.phone">
+              <span class="sp-verify-icon">{{ seller.verification.phone ? '✅' : '❌' }}</span>
+              Teléfono verificado
+            </div>
+          </div>
+        </div>
+
+        <div class="sp-rating-card">
+          <div class="sp-rc-header">
+            <div class="sp-rating-big">{{ seller.rating }}</div>
+            <div>
+              <div class="sp-stars">⭐⭐⭐⭐⭐</div>
+              <div class="sp-reviews">{{ seller.sales }} reseñas</div>
+            </div>
+          </div>
+          <div class="sp-bars">
+            <div class="sp-bar-row" *ngFor="let star of starBars">
+              <span class="sp-bar-label">{{ star }}★</span>
+              <div class="sp-bar-track">
+                <div class="sp-bar-fill" [style.width.%]="seller.ratingDistribution[star] || 0"></div>
+              </div>
+              <span class="sp-bar-pct">{{ seller.ratingDistribution[star] || 0 }}%</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="sp-toast" [class.sp-toast--visible]="toastVisible">{{ toastMsg }}</div>
+
+</div>

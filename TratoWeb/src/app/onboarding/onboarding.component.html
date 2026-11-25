@@ -1,0 +1,221 @@
+<div class="ob-wrapper">
+
+  <!-- Back -->
+  <a routerLink="/home" class="btn-back-link">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <path d="M19 12H5M12 5l-7 7 7 7"></path>
+    </svg>
+    Volver al inicio
+  </a>
+
+  <div class="ob-container">
+
+    <!-- Progress -->
+    <div class="ob-progress">
+      <ng-container *ngFor="let n of stepsArr; let i = index">
+        <div class="ob-step-line" *ngIf="i > 0" [class.done]="n <= step"></div>
+        <div class="ob-step-wrap">
+          <div class="ob-step-dot"
+               [class.done]="n < step"
+               [class.active]="n === step">
+            <span *ngIf="n < step">✓</span>
+            <span *ngIf="n >= step">{{ n }}</span>
+          </div>
+          <div class="ob-step-label"
+               [class.active]="n === step"
+               [class.done-label]="n < step">{{ STEPS_LABEL[i] }}</div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- ── STEP 1: Business data ── -->
+    <div class="ob-card" *ngIf="step === 1">
+      <div class="ob-card-header">
+        <div class="ob-card-emoji">🏪</div>
+        <div class="ob-card-title tt">Cuéntanos sobre tu negocio</div>
+        <div class="ob-card-subtitle">Esta información aparecerá en tu perfil público en Trato</div>
+      </div>
+      <div class="ob-form">
+        <div class="ob-form-group">
+          <label class="ob-label">Nombre de tu tienda <span class="req">*</span></label>
+          <input class="ob-input" #nombre type="text"
+                 placeholder="Ej: Maru Joyería" [value]="obData.nombre" maxlength="50">
+        </div>
+        <div class="ob-form-row">
+          <div class="ob-form-group">
+            <label class="ob-label">Categoría principal <span class="req">*</span></label>
+            <select class="ob-select" #cat>
+              <option *ngFor="let c of CATEGORIES" [value]="c.id"
+                      [selected]="obData.categoria === c.id">{{ c.label }}</option>
+            </select>
+          </div>
+          <div class="ob-form-group">
+            <label class="ob-label">Ciudad <span class="req">*</span></label>
+            <input class="ob-input" #ciudad type="text"
+                   placeholder="Bogotá D.C." [value]="obData.ciudad">
+          </div>
+        </div>
+        <div class="ob-form-group">
+          <label class="ob-label">Descripción de tu tienda</label>
+          <textarea class="ob-textarea" #bio rows="3" maxlength="200"
+                    placeholder="Cuéntale a tus compradores qué vendes y qué te hace especial..."
+          >{{ obData.bio }}</textarea>
+        </div>
+      </div>
+      <div class="ob-nav">
+        <div></div>
+        <button class="btn-pill-primary"
+                (click)="next(nombre.value, cat.value, ciudad.value, bio.value)">
+          Continuar →
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: Verification ── -->
+    <div class="ob-card" *ngIf="step === 2">
+      <div class="ob-card-header">
+        <div class="ob-card-emoji">🛡️</div>
+        <div class="ob-card-title tt">Verifica tu identidad</div>
+        <div class="ob-card-subtitle">El sello de verificación genera confianza real con tus compradores</div>
+      </div>
+      <div class="ob-verify-list">
+        <div class="ob-verify-item" *ngFor="let item of VERIFY_ITEMS"
+             [class.done]="verified[item.key]">
+          <div class="ob-verify-left">
+            <div class="ob-verify-emoji">{{ item.emoji }}</div>
+            <div>
+              <div class="ob-verify-title">{{ item.title }}</div>
+              <div class="ob-verify-desc">{{ item.desc }}</div>
+            </div>
+          </div>
+          <div class="ob-verify-right">
+            <div class="ob-verify-check" *ngIf="verified[item.key]">✅ Verificado</div>
+            <div class="ob-verify-pending" *ngIf="pending[item.key] && !verified[item.key]">
+              <span class="spin">⟳</span> Verificando...
+            </div>
+            <button class="btn-pill-outline" *ngIf="!verified[item.key] && !pending[item.key]"
+                    (click)="verify(item.key)">{{ item.action }}</button>
+          </div>
+        </div>
+      </div>
+      <div class="ob-verify-congrats" *ngIf="allVerified">
+        ✅ ¡Identidad verificada! Tu perfil tendrá el badge <strong>Vendedor Verificado</strong>
+      </div>
+      <div class="ob-nav">
+        <button class="btn-pill-ghost" (click)="back()">← Atrás</button>
+        <button class="btn-pill-primary" [disabled]="!allVerified" (click)="step = step + 1">
+          Continuar →
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: Storefront ── -->
+    <div class="ob-card" *ngIf="step === 3">
+      <div class="ob-card-header">
+        <div class="ob-card-emoji">🎨</div>
+        <div class="ob-card-title tt">Personaliza tu vitrina</div>
+        <div class="ob-card-subtitle">Así se verá tu perfil público en Trato</div>
+      </div>
+      <div class="ob-split">
+        <div class="ob-form-col">
+          <div class="ob-form-group">
+            <label class="ob-label">Eslogan de tu tienda</label>
+            <input class="ob-input" #taglineInput type="text"
+                   placeholder="Ej: Esmeraldas desde Boyacá al mundo"
+                   [value]="obData.tagline" maxlength="60"
+                   (input)="updateTagline(taglineInput.value)">
+          </div>
+          <div class="ob-form-group">
+            <label class="ob-label">Color de banner</label>
+            <div class="ob-gradient-picker">
+              <div class="ob-gradient-swatch"
+                   *ngFor="let g of GRADIENTS"
+                   [style.background]="g.value"
+                   [class.selected]="obData.gradient === g.value"
+                   [title]="g.label"
+                   (click)="pickGradient(g.value, taglineInput.value)">
+                <span *ngIf="obData.gradient === g.value">✓</span>
+              </div>
+            </div>
+          </div>
+          <div class="ob-compare-box">
+            <div class="ob-compare-title">¿Por qué Trato y no Facebook?</div>
+            <div class="ob-compare-row"><span>✅</span><span>URL propia: <strong>trato.co/{{ slug }}</strong></span></div>
+            <div class="ob-compare-row"><span>✅</span><span>Badge verificado visible a todos</span></div>
+            <div class="ob-compare-row"><span>✅</span><span>Historial de ventas y reseñas auténticas</span></div>
+            <div class="ob-compare-row"><span>✅</span><span>Comisión 0% — te quedas con todo</span></div>
+          </div>
+        </div>
+        <div class="ob-preview-col">
+          <div class="ob-preview-label">Vista previa</div>
+          <div class="ob-mini-profile">
+            <div class="ob-mp-banner" [style.background]="obData.gradient"></div>
+            <div class="ob-mp-body">
+              <div class="ob-mp-avatar-wrap">
+                <div class="ob-mp-avatar">{{ initials }}</div>
+              </div>
+              <div class="ob-mp-name tt">{{ obData.nombre || 'Tu Tienda' }}</div>
+              <div class="ob-mp-tagline">{{ obData.tagline || 'Tu eslogan aquí' }}</div>
+              <div class="ob-mp-badges">
+                <span class="ob-mp-badge">✅ Verificado</span>
+                <span class="ob-mp-badge">🏆 Nuevo</span>
+              </div>
+              <div class="ob-mp-url">trato.co/{{ slug }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ob-nav">
+        <button class="btn-pill-ghost" (click)="back()">← Atrás</button>
+        <button class="btn-pill-primary" (click)="step = step + 1; launchConfetti()">
+          🚀 Publicar perfil
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: Success ── -->
+    <div class="ob-card ob-card-success" *ngIf="step === 4">
+      <div class="ob-confetti-wrap">
+        <div class="confetti-piece"
+             *ngFor="let p of confettiPieces"
+             [style.left]="p.left"
+             [style.background]="p.bg"
+             [style.animationDelay]="p.delay"
+             [style.animationDuration]="p.duration"
+             [style.width]="p.size"
+             [style.height]="p.size"
+             [style.borderRadius]="p.br">
+        </div>
+      </div>
+      <div class="ob-card-header ob-card-header--success">
+        <div class="ob-card-emoji">🎉</div>
+        <div class="ob-card-title tt ob-title-success">¡Tu perfil está listo!</div>
+        <div class="ob-card-subtitle">Ya eres parte de Trato. Empieza a vender y gana la confianza de tus compradores.</div>
+      </div>
+      <div class="ob-success-profile">
+        <div class="ob-mp-banner" [style.background]="obData.gradient"></div>
+        <div class="ob-mp-body" style="padding: 0 20px 20px">
+          <div class="ob-mp-avatar-wrap">
+            <div class="ob-mp-avatar ob-mp-avatar--lg">{{ initials }}</div>
+          </div>
+          <div class="ob-mp-name tt" style="font-size:18px">{{ obData.nombre || 'Tu Tienda' }}</div>
+          <div class="ob-mp-badges">
+            <span class="ob-mp-badge">✅ Identidad verificada</span>
+            <span class="ob-mp-badge">🏆 Nuevo vendedor</span>
+          </div>
+          <div class="ob-mp-url">trato.co/{{ slug }}</div>
+        </div>
+      </div>
+      <div class="ob-success-actions">
+        <a routerLink="/seller" class="btn-pill-primary">🏪 Ver ejemplo de perfil</a>
+        <a routerLink="/auctions" class="btn-pill-green">🔨 Explorar subastas</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div class="ob-toast" [class.ob-toast--visible]="toastVisible">{{ toastMsg }}</div>
+
+</div>
