@@ -223,57 +223,154 @@
   color: #FFFFFF;
 }
 
-.mobile-nav {
-  display: flex;
-  flex-direction: column;
-  padding: 16px 12px;
-  flex: 1;
-
-  a {
-    padding: 14px 16px;
-    text-decoration: none;
-    color: var(--trato-purple);
-    font-size: 17px;
-    border-radius: 16px;
-    transition: background .15s;
-
-    &:hover, &.active {
-      background: var(--trato-purple-glass);
-      font-weight: 700;
-    }
-  }
-}
-
-.mobile-nav-divider {
-  height: 1px;
-  background: rgba(56,17,187,.08);
-  margin: 8px 16px;
-}
-
-.mobile-actions {
-  padding: 16px 20px 32px;
+/* ── User card ── */
+.mm-user-card {
+  background: var(--trato-purple);
+  margin: 12px 14px;
+  border-radius: 20px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.btn-ingresar-full, .btn-registro-full {
-  text-decoration: none;
+.mm-user-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--trato-green);
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 52px;
-  border-radius: var(--radius-pill);
-  font-size: 16px;
-  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
 }
 
-.btn-ingresar-full {
-  background: var(--trato-purple-glass);
+.mm-user-info { }
+
+.mm-user-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.mm-user-handle {
+  font-size: 12px;
+  color: rgba(255,255,255,.65);
+  margin-bottom: 6px;
+}
+
+.mm-user-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.mm-user-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.mm-btn-perfil, .mm-btn-subasta {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 38px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .15s;
+  &:hover { opacity: .85; }
+}
+
+.mm-btn-perfil {
+  background: #fff;
   color: var(--trato-purple);
 }
 
-.btn-registro-full {
-  background: var(--trato-purple);
-  color: #FFFFFF;
+.mm-btn-subasta {
+  background: var(--trato-green);
+  color: var(--trato-purple);
+}
+
+/* ── Nav items ── */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 4px 10px;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 12px;
+    text-decoration: none;
+    color: var(--trato-purple);
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 14px;
+    transition: background .15s;
+    position: relative;
+
+    &:hover { background: var(--trato-purple-soft); }
+
+    &.mm-active {
+      background: var(--trato-purple-soft);
+      font-weight: 800;
+    }
+  }
+}
+
+/* Icon square */
+.mm-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(56,17,187,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--trato-purple);
+  flex-shrink: 0;
+
+  &--home {
+    background: var(--trato-purple);
+    color: #fff;
+  }
+}
+
+/* Badge */
+.mm-badge {
+  margin-left: auto;
+  background: var(--trato-green);
+  color: var(--trato-purple);
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* Section label */
+.mm-section-label {
+  font-size: 10px;
+  font-weight: 800;
+  color: #aaa;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 10px 22px 2px;
 }

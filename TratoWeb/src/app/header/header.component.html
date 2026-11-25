@@ -6,8 +6,8 @@
     </a>
 
     <nav class="nav-links" aria-label="Principal">
-      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" aria-label="Inicio">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
              stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"></path>
           <path d="M9 21V12h6v9"></path>
@@ -49,14 +49,15 @@
         Dashboard
       </a>
 
-      <button type="button" class="show-sm icon-btn" aria-label="Ingresar">
+      <!-- Mobile: user + hamburger -->
+      <a routerLink="/seller" class="show-sm icon-btn" aria-label="Mi perfil">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
              aria-hidden="true">
           <circle cx="12" cy="8" r="4"></circle>
           <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path>
         </svg>
-      </button>
+      </a>
 
       <button type="button" class="menu-btn show-sm icon-btn" (click)="toggleMenu()"
               aria-label="Abrir menú" [attr.aria-expanded]="menuOpen">
@@ -69,30 +70,137 @@
   </div>
 </header>
 
+<!-- ── Mobile drawer ── -->
 <div class="mobile-menu" *ngIf="menuOpen" (click)="closeMenu()">
   <div class="mobile-menu-panel" (click)="$event.stopPropagation()">
+
+    <!-- Drawer header -->
     <div class="mobile-menu-header">
-      <img src="assets/images/logo/principal_logo.png" alt="Trato Subastas" style="height:36px;filter:brightness(0) invert(1)">
+      <img src="assets/images/logo/principal_logo.png" alt="Trato Subastas"
+           style="height:34px;filter:brightness(0) invert(1)">
       <button type="button" class="close-btn" (click)="closeMenu()" aria-label="Cerrar menú">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
           <path d="M6 6l12 12M18 6 6 18"></path>
         </svg>
       </button>
     </div>
-    <nav class="mobile-nav" aria-label="Menú principal">
-      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">🏠 Inicio</a>
-      <a routerLink="/auctions" routerLinkActive="active" (click)="closeMenu()">🔨 Subastas</a>
-      <a routerLink="/exchanges" routerLinkActive="active" (click)="closeMenu()">🔄 Intercambios</a>
-      <a routerLink="/scheduled" routerLinkActive="active" (click)="closeMenu()">📅 Programadas</a>
-      <div class="mobile-nav-divider"></div>
-      <a routerLink="/seller" routerLinkActive="active" (click)="closeMenu()">🏪 Mi Tienda</a>
-      <a routerLink="/dashboard" routerLinkActive="active" (click)="closeMenu()">📊 Dashboard</a>
-      <a routerLink="/onboarding" routerLinkActive="active" (click)="closeMenu()">✨ Crear perfil</a>
-    </nav>
-    <div class="mobile-actions">
-      <a routerLink="/seller" class="btn-ingresar-full" (click)="closeMenu()">Mi Tienda</a>
-      <a routerLink="/dashboard" class="btn-registro-full" (click)="closeMenu()">Dashboard</a>
+
+    <!-- User card -->
+    <div class="mm-user-card">
+      <div class="mm-user-avatar">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="8" r="4"></circle>
+          <path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path>
+        </svg>
+      </div>
+      <div class="mm-user-info">
+        <div class="mm-user-name">Maru Joyería</div>
+        <div class="mm-user-handle">@maru-joyeria</div>
+        <div class="mm-user-verified">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Identidad verificada
+        </div>
+      </div>
+      <div class="mm-user-actions">
+        <a routerLink="/seller" class="mm-btn-perfil" (click)="closeMenu()">Ver mi perfil</a>
+        <a routerLink="/scheduled" class="mm-btn-subasta" (click)="closeMenu()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Crear subasta
+        </a>
+      </div>
     </div>
+
+    <!-- Main nav items -->
+    <nav class="mobile-nav" aria-label="Menú principal">
+      <a routerLink="/home" routerLinkActive="mm-active" [routerLinkActiveOptions]="{exact:true}"
+         (click)="closeMenu()">
+        <span class="mm-icon mm-icon--home">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"></path>
+            <path d="M9 21V12h6v9"></path>
+          </svg>
+        </span>
+        Inicio
+      </a>
+      <a routerLink="/auctions" routerLinkActive="mm-active" (click)="closeMenu()">
+        <span class="mm-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"></circle>
+            <path d="m20 20-3.5-3.5"></path>
+          </svg>
+        </span>
+        Explorar subastas
+      </a>
+      <a routerLink="/exchanges" routerLinkActive="mm-active" (click)="closeMenu()">
+        <span class="mm-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M7 16V4m0 0L3 8m4-4 4 4M17 8v12m0 0 4-4m-4 4-4-4"></path>
+          </svg>
+        </span>
+        Intercambios
+      </a>
+      <a routerLink="/scheduled" routerLinkActive="mm-active" (click)="closeMenu()">
+        <span class="mm-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </span>
+        Programadas
+      </a>
+    </nav>
+
+    <!-- Seller section -->
+    <div class="mm-section-label">MI VENDEDOR</div>
+    <nav class="mobile-nav" aria-label="Vendedor">
+      <a routerLink="/seller" routerLinkActive="mm-active" (click)="closeMenu()">
+        <span class="mm-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+        </span>
+        Mi Tienda
+      </a>
+      <a routerLink="/dashboard" routerLinkActive="mm-active" (click)="closeMenu()">
+        <span class="mm-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+          </svg>
+        </span>
+        Dashboard
+        <span class="mm-badge">3</span>
+      </a>
+      <a routerLink="/onboarding" routerLinkActive="mm-active" (click)="closeMenu()">
+        <span class="mm-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+          </svg>
+        </span>
+        Crear perfil vendedor
+      </a>
+    </nav>
+
   </div>
 </div>
