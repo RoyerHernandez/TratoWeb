@@ -22,6 +22,7 @@ import { ScheduledComponent } from './scheduled/scheduled.component';
 import { SellerComponent } from './seller/seller.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ScheduledComponent,
     SellerComponent,
     OnboardingComponent,
-    DashboardComponent
+    DashboardComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

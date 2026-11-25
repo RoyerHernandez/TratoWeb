@@ -162,6 +162,34 @@
   }
 }
 
+/* Bell */
+.bell-btn {
+  position: relative;
+
+  &.active {
+    background: var(--trato-purple);
+    color: #fff;
+  }
+}
+
+.bell-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--trato-green);
+  color: var(--trato-purple);
+  font-size: 9px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 3px;
+  pointer-events: none;
+}
+
 /* Mobile: show/hide */
 .hide-sm { display: flex; }
 .show-sm { display: none; }

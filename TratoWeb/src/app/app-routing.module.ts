@@ -11,6 +11,7 @@ import { ScheduledComponent } from './scheduled/scheduled.component';
 import { SellerComponent } from './seller/seller.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  },
+  {
+    path: 'notifications',
+    component: NotificationsComponent
   },
   {
     path: '**',
