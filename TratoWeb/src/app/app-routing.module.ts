@@ -7,6 +7,7 @@ import { AuctionsComponent } from './auctions/auctions.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ScheduledComponent } from './scheduled/scheduled.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,10 @@ const routes: Routes = [
   },{
     path:'contact',
     component: ContactComponent
+  },
+  {
+    path: 'scheduled',
+    component: ScheduledComponent
   },
   {
     path: '**',

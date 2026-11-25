@@ -1,11 +1,53 @@
-<section class="auctions-section" id="subastas">
+<div class="auctions-page">
   <div class="section-container">
-    <div class="section-header">
-      <h2 class="tt">Subastas activas</h2>
-      <a routerLink="/auctions">Ver todas →</a>
+
+    <!-- Header -->
+    <div class="page-header">
+      <div class="header-left">
+        <h1 class="tt page-title">Subastas activas</h1>
+        <span class="live-badge">EN VIVO</span>
+      </div>
+      <a routerLink="/scheduled" class="btn-scheduled">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        Programadas
+      </a>
     </div>
-    <div class="auction-grid">
-      <article class="auction-card" *ngFor="let auct of Auction" routerLink="/auctions">
+
+    <!-- Toolbar: search + categories -->
+    <div class="auctions-toolbar">
+      <div class="search-bar">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.5-3.5"></path>
+        </svg>
+        <input type="search" placeholder="Buscar subastas..."
+               (input)="onSearch($any($event.target).value)" class="search-input">
+      </div>
+      <div class="category-chips">
+        <button *ngFor="let cat of categories"
+                class="chip" [class.active]="cat.id === activeCategory"
+                (click)="setCategory(cat.id)">
+          {{ cat.label }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="auctions-stats">
+      <span><strong>{{ filtered.length }}</strong> subastas</span>
+      <span *ngIf="activeCategory !== 'all' || searchQuery">
+        · {{ filtered.length }} encontradas
+      </span>
+    </div>
+
+    <!-- Grid -->
+    <div class="auction-grid" *ngIf="filtered.length > 0; else empty">
+      <article class="auction-card" *ngFor="let auct of filtered">
         <div class="card-img-wrap">
           <img [src]="auct.image" [alt]="auct.product_name" class="card-img">
           <span class="card-timer" [class.ending]="auct.bidState === 'ending'">
@@ -27,10 +69,28 @@
               <span class="price-label">{{ auct.totalBids }} pujas</span>
               <span class="tt price-value">{{ auct.bidValue | currency:'COP':'symbol-narrow':'1.0-0' }}</span>
             </div>
-            <a routerLink="/auctions" class="btn-bid" (click)="$event.stopPropagation()">Pujar</a>
+            <button class="btn-bid">Pujar</button>
           </div>
         </div>
       </article>
     </div>
+
+    <ng-template #empty>
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <p class="empty-title">Sin resultados</p>
+        <p class="empty-desc">Intenta con otros términos o categorías</p>
+      </div>
+    </ng-template>
+
   </div>
-</section>
+
+  <!-- FAB -->
+  <a routerLink="/scheduled" class="fab" aria-label="Nueva subasta programada">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </a>
+</div>

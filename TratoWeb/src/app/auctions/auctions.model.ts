@@ -2,6 +2,7 @@
 export interface auctions {
     id: string;
     product_name: string;
+    category: string;
     categoryLabel: string;
     bidValue: number;
     image: string;

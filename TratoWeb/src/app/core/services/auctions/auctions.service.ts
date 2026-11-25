@@ -10,6 +10,7 @@ export class AuctionsService {
     {
       id: '1',
       product_name: 'Esmeralda Natural 2.3ct — Certificada',
+      category: 'joyeria',
       categoryLabel: 'Joyería',
       bidValue: 1250000,
       image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80',
@@ -22,6 +23,7 @@ export class AuctionsService {
     {
       id: '2',
       product_name: 'Reloj Seiko Automático SPB143',
+      category: 'relojes',
       categoryLabel: 'Relojes',
       bidValue: 1750000,
       image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80',
@@ -34,6 +36,7 @@ export class AuctionsService {
     {
       id: '3',
       product_name: 'iPhone 15 Pro 256GB Titanio Natural',
+      category: 'tecnologia',
       categoryLabel: 'Tecnología',
       bidValue: 3200000,
       image: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&q=80',
@@ -46,6 +49,7 @@ export class AuctionsService {
     {
       id: '4',
       product_name: 'Collar Oro 18K con Esmeralda',
+      category: 'joyeria',
       categoryLabel: 'Joyería',
       bidValue: 2100000,
       image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&q=80',
@@ -58,7 +62,8 @@ export class AuctionsService {
     {
       id: '5',
       product_name: 'Nike Air Jordan 1 Retro — Talla 42',
-      categoryLabel: 'Moda',
+      category: 'calzado',
+      categoryLabel: 'Calzado',
       bidValue: 680000,
       image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80',
       startValue: '03:15:00',
@@ -70,6 +75,7 @@ export class AuctionsService {
     {
       id: '6',
       product_name: 'MacBook Pro M3 Pro 14" — 18GB/512GB',
+      category: 'tecnologia',
       categoryLabel: 'Tecnología',
       bidValue: 7500000,
       image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&q=80',
@@ -82,6 +88,7 @@ export class AuctionsService {
     {
       id: '7',
       product_name: 'Anillo Esmeralda Baguette Oro 18K',
+      category: 'joyeria',
       categoryLabel: 'Joyería',
       bidValue: 1850000,
       image: 'https://images.unsplash.com/photo-1589128777073-263566ae5e4d?w=600&q=80',
@@ -94,6 +101,7 @@ export class AuctionsService {
     {
       id: '8',
       product_name: 'Sony Alpha A7IV Body',
+      category: 'tecnologia',
       categoryLabel: 'Tecnología',
       bidValue: 5900000,
       image: 'https://images.unsplash.com/photo-1617957796013-1a08f0e70878?w=600&q=80',
@@ -106,6 +114,7 @@ export class AuctionsService {
     {
       id: '9',
       product_name: 'Guitarra Acústica de Luthier',
+      category: 'instrumentos',
       categoryLabel: 'Instrumentos',
       bidValue: 4200000,
       image: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=600&q=80',
@@ -117,11 +126,15 @@ export class AuctionsService {
     }
   ];
 
-  GetAllAuctions() {
-    return this.auction;
-  }
+  readonly categories = [
+    { id: 'all',          label: 'Todos' },
+    { id: 'joyeria',      label: 'Joyería' },
+    { id: 'relojes',      label: 'Relojes' },
+    { id: 'tecnologia',   label: 'Tecnología' },
+    { id: 'calzado',      label: 'Calzado' },
+    { id: 'instrumentos', label: 'Instrumentos' },
+  ];
 
-  GetAuction(id: string) {
-    return this.auction.find(item => id === item.id);
-  }
+  GetAllAuctions() { return this.auction; }
+  GetAuction(id: string) { return this.auction.find(item => id === item.id); }
 }

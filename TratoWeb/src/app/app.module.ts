@@ -18,6 +18,7 @@ import { ProductComponent } from './product/product.component';
 import { HighlightDirective } from './shared/directives/highlight.directive';
 import { CategorieComponent } from './categorie/categorie.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ScheduledComponent } from './scheduled/scheduled.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ProductComponent,
     HighlightDirective,
     CategorieComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ScheduledComponent
   ],
   imports: [
     BrowserModule,
